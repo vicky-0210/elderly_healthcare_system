@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "dataset_roots": {
+    "ptbxl": null,
+    "osasud": null,
+    "sisfall": null,
+    "wesad": null
+  },
+  "workspace_roots": {
+    "data": "data",
+    "artifacts": "artifacts"
+  }
+}

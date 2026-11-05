@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ecg",
+  "group_by": "patient_id",
+  "preserve_official_folds": true,
+  "required_views": [
+    "LVH_vs_normal",
+    "LVH_vs_rest",
+    "single_lead",
+    "hardware_domain"
+  ],
+  "metrics": [
+    "AUROC",
+    "AUPRC",
+    "sensitivity",
+    "specificity",
+    "calibration",
+    "coverage"
+  ]
+}

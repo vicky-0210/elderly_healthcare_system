@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ecg",
+  "preserve_calibrated_voltage": true,
+  "baseline_method": null,
+  "denoising_method": null,
+  "mains_filter_policy": "only_if_detected",
+  "normalization": null,
+  "resample_hz": null
+}

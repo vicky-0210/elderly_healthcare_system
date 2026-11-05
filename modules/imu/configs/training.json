@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "imu",
+  "task": "Fall versus ADL detection",
+  "random_seed": 42,
+  "optimizer": null,
+  "batch_size": null,
+  "epochs": null,
+  "split_config": "dataset.json",
+  "artifacts_signal": "imu",
+  "fit_preprocessing_on_train_only": true
+}

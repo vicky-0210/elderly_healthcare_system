@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "imu",
+  "group_by": "subject_id",
+  "subject_independent": true,
+  "required_views": [
+    "trial_level",
+    "sliding_window",
+    "continuous_ADL",
+    "hardware_domain"
+  ],
+  "metrics": [
+    "sensitivity",
+    "specificity",
+    "AUPRC",
+    "false_alarms_per_hour"
+  ],
+  "onset_latency_requires_additional_annotations": true
+}

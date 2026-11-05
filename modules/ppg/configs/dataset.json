@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ppg",
+  "dataset": "OSASUD",
+  "dataset_version": null,
+  "root_key": "osasud",
+  "stream": "Mindray PPG",
+  "sample_rate_hz": 80,
+  "preserve_timestamps": true,
+  "preserve_patient_identity": true,
+  "source_patient_id_field": null,
+  "source_timestamp_field": null,
+  "split": {
+    "strategy": "patient_independent",
+    "group_id": "patient_id",
+    "manifest_required": true
+  },
+  "labels": {
+    "source_classes": [
+      "NONE",
+      "HYPOPNEA",
+      "APNEA-CENTRAL",
+      "APNEA-OBSTRUCTIVE",
+      "APNEA-MIXED"
+    ],
+    "selected_task": null,
+    "supported_tasks": [
+      "event_vs_none",
+      "none_hypopnea_apnea",
+      "five_class"
+    ],
+    "event_to_window_label_policy": null
+  }
+}

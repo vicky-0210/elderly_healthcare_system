@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ppg",
+  "group_by": "patient_id",
+  "patient_independent": true,
+  "required_views": [
+    "window_level",
+    "event_level",
+    "hardware_domain"
+  ],
+  "metrics": [
+    "AUROC",
+    "AUPRC",
+    "sensitivity",
+    "specificity",
+    "event_recall",
+    "false_alarms_per_hour"
+  ],
+  "event_matching_tolerance_seconds": null
+}

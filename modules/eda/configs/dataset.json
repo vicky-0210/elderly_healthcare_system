@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "eda",
+  "dataset": "WESAD",
+  "dataset_version": null,
+  "root_key": "wesad",
+  "stream": "wrist EDA (Empatica E4)",
+  "sample_rate_hz": 4,
+  "preserve_subject_identity": true,
+  "split": {
+    "strategy": "subject_independent",
+    "group_id": "subject_id",
+    "manifest_required": true
+  },
+  "labels": {
+    "source_mapping": {
+      "0": "transition_undefined",
+      "1": "baseline",
+      "2": "stress",
+      "3": "amusement",
+      "4": "meditation"
+    },
+    "include": [
+      1,
+      2
+    ],
+    "exclude": [
+      0,
+      3,
+      4
+    ],
+    "target_mapping": {
+      "1": 0,
+      "2": 1
+    },
+    "source_label_sample_rate_hz": null,
+    "alignment": "align annotation time base to wrist EDA before windowing"
+  }
+}

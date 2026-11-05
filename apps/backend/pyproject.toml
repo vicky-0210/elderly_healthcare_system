@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wearable-api"
+version = "0.1.0"
+description = "Backend API package scaffold"
+readme = "README.md"
+dependencies = ["wearable-common"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "mode": "replay",
+  "paths_config": "configs/paths.local.json",
+  "model_registry": "configs/model_registry.local.json",
+  "signals": {
+    "ecg": {
+      "enabled": false,
+      "window_seconds": null,
+      "hop_seconds": null,
+      "max_buffer_seconds": null
+    },
+    "ppg": {
+      "enabled": false,
+      "window_seconds": null,
+      "hop_seconds": null,
+      "max_buffer_seconds": null
+    },
+    "imu": {
+      "enabled": false,
+      "window_seconds": null,
+      "hop_seconds": null,
+      "max_buffer_seconds": null
+    },
+    "eda": {
+      "enabled": false,
+      "window_seconds": null,
+      "hop_seconds": null,
+      "max_buffer_seconds": null
+    }
+  },
+  "on_missing_signal": "emit_unavailable",
+  "allow_training_imports": false
+}

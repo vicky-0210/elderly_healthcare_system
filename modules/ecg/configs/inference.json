@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ecg",
+  "input_mode": "single_lead",
+  "lead": "II",
+  "hardware_placement_verified": false,
+  "sample_rate_hz": null,
+  "window_seconds": null,
+  "hop_seconds": null,
+  "score_semantics": "LVH-associated ECG pattern, not imaging-confirmed anatomical LVH"
+}

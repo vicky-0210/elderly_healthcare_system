@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "eda",
+  "tonic_phasic_decomposition": {
+    "enabled": null,
+    "method": null,
+    "fitted_parameters": null
+  },
+  "motion_artifacts": {
+    "use_optional_wrist_accelerometer": false,
+    "alignment_method": null
+  },
+  "filtering": null,
+  "normalization": null,
+  "resample_hz": null
+}

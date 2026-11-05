@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ppg",
+  "preserve_timestamps": true,
+  "gap_detection": true,
+  "discontinuity_policy": null,
+  "resample_hz": null,
+  "filtering": null,
+  "normalization": null
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ecg",
+  "architecture": null,
+  "research_candidates": [
+    "tcn_ssm",
+    "xlstm",
+    "tcn_with_pooling",
+    "cnn_transformer"
+  ],
+  "input_leads": null
+}

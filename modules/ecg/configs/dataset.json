@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ecg",
+  "dataset": "PTB-XL",
+  "dataset_version": "1.0.3",
+  "root_key": "ptbxl",
+  "source_sample_rates_hz": [
+    500,
+    100
+  ],
+  "selected_source_sample_rate_hz": 500,
+  "source_channels": "12-lead ECG",
+  "record_id_key": "ecg_id",
+  "group_id_key": "patient_id",
+  "split": {
+    "strategy": "official",
+    "column": "strat_fold",
+    "train": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "validation": [
+      9
+    ],
+    "test": [
+      10
+    ]
+  },
+  "labels": {
+    "positive_statement": "LVH",
+    "negative_initial_policy": "NORM with no conflicting statements; exact cohort rule must be frozen",
+    "secondary_task": "LVH versus all other records",
+    "exclude_contradictory_lvh_norm": true,
+    "hypertrophy_superclass_is_not_lvh": true,
+    "confidence_zero_means": "unknown"
+  },
+  "experiments": {
+    "wearable_lead": "II",
+    "wearable_placement_verified": false,
+    "allow_12_lead_teacher_research": true
+  }
+}

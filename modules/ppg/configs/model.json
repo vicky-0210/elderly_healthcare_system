@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ppg",
+  "architecture": null,
+  "input_channels": null
+}

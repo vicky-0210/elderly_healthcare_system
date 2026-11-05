@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "imu",
+  "axis_mapping": null,
+  "unit_conversion": null,
+  "orientation_policy": null,
+  "filtering": null,
+  "resample_hz": null,
+  "normalization": null
+}

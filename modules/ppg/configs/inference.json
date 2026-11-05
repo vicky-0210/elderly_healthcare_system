@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "ppg",
+  "sensor": "MAX30102",
+  "optical_channel": null,
+  "sample_rate_hz": null,
+  "window_seconds": null,
+  "hop_seconds": null,
+  "event_aggregation_policy": null,
+  "score_semantics": "Apnea/hypopnea event screening; distinguish event and window outputs"
+}

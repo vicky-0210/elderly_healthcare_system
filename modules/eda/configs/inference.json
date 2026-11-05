@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "eda",
+  "sensor": null,
+  "calibration_to_eda_units": null,
+  "sample_rate_hz": null,
+  "window_seconds": null,
+  "hop_seconds": null,
+  "optional_motion_input": false,
+  "score_semantics": "Laboratory baseline/stress classification, not clinical stress diagnosis"
+}

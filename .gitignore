@@ -1,0 +1,96 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.local.json
+*.local.toml
+*.local.yaml
+*.local.yml
+*.pem
+*.key
+credentials*.json
+
+# Local datasets and generated data. Keep only explanatory files/placeholders.
+/data/**/*
+!/data/**/
+!/data/**/README.md
+!/data/**/.gitkeep
+
+# Checkpoints, exported models, runs, evaluation output and recordings.
+/artifacts/**/*
+!/artifacts/**/
+!/artifacts/**/README.md
+!/artifacts/**/.gitkeep
+/recordings/
+/logs/
+/tmp/
+/models_cache/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+*.plan
+*.tflite
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.parquet
+*.pkl
+*.pickle
+*.joblib
+*.tfrecord
+*.tfrecords
+*.edf
+*.hea
+*.dat
+
+# Existing reproducible ECG audit outputs, preserved locally.
+/research/metadata/
+/research/cohort_manifest.csv
+/research/cohort_counts.csv
+/research/dataset_audit.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Frontend/build tools
+node_modules/
+.next/
+.nuxt/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Experiments and notebooks
+.ipynb_checkpoints/
+mlruns/
+wandb/
+lightning_logs/
+multirun/
+events.out.tfevents.*
+
+# Editors / operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*.log

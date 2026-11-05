@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "imu",
+  "architecture": null,
+  "input_axes": 6
+}

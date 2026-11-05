@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "signal": "eda",
+  "group_by": "subject_id",
+  "subject_independent": true,
+  "required_views": [
+    "baseline_vs_stress",
+    "subject_generalization",
+    "optional_motion_ablation",
+    "hardware_domain"
+  ],
+  "metrics": [
+    "AUROC",
+    "AUPRC",
+    "balanced_accuracy",
+    "F1",
+    "calibration",
+    "coverage"
+  ]
+}
