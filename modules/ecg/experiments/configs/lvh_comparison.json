@@ -1,0 +1,17 @@
+{
+  "experiment": "ptbxl_1_0_3_lead_ii_lvh_20261105",
+  "tasks": ["lvh_vs_normal", "lvh_vs_rest"],
+  "architectures": ["cnn", "cnn_transformer", "cnn_ssm"],
+  "seeds": [42, 43, 44, 45, 46],
+  "preprocessing": "constrained",
+  "training": {
+    "learning_rate": 0.0003,
+    "weight_decay": 0.001,
+    "batch_size": 32,
+    "max_epochs": 100,
+    "patience": 15,
+    "augmentation": true,
+    "target_specificity": 0.90
+  },
+  "evaluation": {"patient_bootstrap_replicates": 1000, "seed_aggregation": "mean and sample standard deviation; no best-seed selection"}
+}

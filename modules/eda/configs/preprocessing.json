@@ -1,17 +1,20 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "eda",
-  "tonic_phasic_decomposition": {
-    "enabled": null,
-    "method": null,
-    "fitted_parameters": null
-  },
-  "motion_artifacts": {
-    "use_optional_wrist_accelerometer": false,
-    "alignment_method": null
-  },
-  "filtering": null,
-  "normalization": null,
-  "resample_hz": null
+  "schema_version": "1.1",
+  "status": "implemented",
+  "reference_implementation": "wearable_eda.preprocessing.wrist",
+  "sampling_rate_hz": 4,
+  "default_filter": "conservative",
+  "filter_lowpass_hz": {"conservative": 0.65, "1hz": 1.0, "raw": null},
+  "filter_order": 2,
+  "default_decomposition": "mcsaed",
+  "causal_decompositions": ["mcsaed", "sparse", "none"],
+  "retrospective_decompositions": ["cvxeda", "choi"],
+  "cvxeda": {"package": "cvxeda==1.1.0", "step_s": 0.25, "core_s": 120, "guard_s": 30, "tau0_s": 2, "tau1_s": 0.7, "knot_s": 10, "alpha": 0.0008, "gamma": 0.01, "relative_tolerance": 1e-7},
+  "choi": {"second_difference_penalty_lambda": 1500, "signed_phasic": true},
+  "quality": {"options": ["auto", "eda", "motion", "off"], "units": "fraction", "eda_derivative_history_s": 30, "motion_trailing_s": 1},
+  "reject_gap_at_least_s": 5,
+  "window_max_missing_fraction": 0.2,
+  "scr_prominence_uS": 0.03,
+  "scr_min_peak_separation_s": 1,
+  "rest_calibration": {"median_and_mad_correction": 1.4826, "tonic_floor_uS": 0.05, "phasic_floor_uS": 0.02}
 }

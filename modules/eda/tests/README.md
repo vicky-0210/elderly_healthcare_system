@@ -1,9 +1,5 @@
-# EDA/GSR tests
+# EDA verification
 
-`unit/`: loader, validation, label, split, preprocessing and window semantics.
+From the repository root, with pytest and the module installed, run `python -m pytest -q modules/eda/tests`. The tests exercise held-out subject isolation, frozen scaling, signal preprocessing, model graphs, checkpoint reload, metric definitions and the lightweight selection rule. The fixtures are synthetic.
 
-`integration/`: synthetic data preparation, export/inference parity and the module predictor contract.
-
-`fixtures/`: tiny synthetic samples only. Full WESAD data remain local. Hardware integration tests requiring devices belong in the root `tests/hardware/` or use explicit opt-in markers once implemented.
-
-No tests are implemented yet.
+The measured-data verification commands live in the [EDA runbook](../README.md). They reconstruct window identities, re-score each fold's predictions and replay the all-subject exports on synchronized native-rate input.

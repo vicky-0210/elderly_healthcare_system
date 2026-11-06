@@ -18,14 +18,14 @@ Windows JSON paths must escape backslashes or use forward slashes, for example `
 
 ## Independent environments
 
-Use an isolated development environment for the area you own. Python packages use a src layout; do not edit sys.path in notebooks or scripts.
+Use an isolated development environment for the area you own. Python packages use a src layout. Prefer editable installs; the ECG command-line entry points also support direct execution from the repository.
 
 For example, after creating your development environment:
 ```sh
 python -m pip install -e packages/common -e modules/ecg
 ```
 
-Equivalent module packages exist for PPG, IMU and EDA. Package manifests currently declare only internal dependencies; no ML framework or other runtime dependency has been selected. Dataset preparation/training/evaluation/export scripts are explicit stubs and will report that implementation is pending.
+The ECG package includes a PyTorch research pipeline and pinned dependencies; follow modules/ecg/README.md. Equivalent package scaffolds for PPG, IMU and EDA still contain implementation-pending entry points. Each team owns its independent environment.
 
 Add dependencies to the owning package and record reproducible environment locks when actual code is introduced. The directories under `environments/` are reserved for that work. Avoid a single environment containing every team's experiment stack.
 

@@ -2,7 +2,7 @@
 
 Repository scaffold for four independent signal pipelines and their eventual integration on NVIDIA Jetson Nano.
 
-**Status:** folder structure, configuration templates, documentation and interface stubs only. No sensor driver, model, training pipeline, API or frontend is implemented or clinically validated. Scripts and predictors deliberately fail until implemented.
+The [ECG module](modules/ecg/README.md) implements the PTB-XL LVH workflow. The [EDA module](modules/eda/README.md) implements WESAD wrist preprocessing, participant-independent training and evaluation, and research replay for stress-associated physiological arousal. See the [WESAD protocol](research/wesad_research_protocol.md) and [comparison report](research/results/wesad_loso_v1/README.md). PPG, IMU, acquisition, API and frontend are scaffolded. Hardware validation is pending.
 
 | Module | Dataset | Intended task | Wearable source |
 | --- | --- | --- | --- |
@@ -33,7 +33,7 @@ deploy/                     Jetson, API, frontend and service deployment assets
 docs/                       Architecture, workflows and validation guidance
 tests/                      Cross-module, contract, end-to-end and hardware tests
 scripts/                    Repository-level operations
-research/                   Existing ECG research, preserved in place
+research/                   Study protocols and portable evaluation reports
 ```
 
 Each signal module owns its dataset loading, validation, labels, splits, windowing, preprocessing, model definitions, training, evaluation, inference, configurations, experiments, tests and documentation. Matching directory names do **not** require matching algorithms, window sizes, sample rates, labels or frameworks.

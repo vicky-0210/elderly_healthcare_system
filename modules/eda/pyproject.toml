@@ -4,10 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wearable-eda"
-version = "0.1.0"
-description = "EDA/GSR research and inference module scaffold"
+version = "0.2.0"
+description = "Wrist EDA and multimodal arousal research with WESAD"
 readme = "README.md"
-dependencies = ["wearable-common"]
+requires-python = ">=3.10"
+dependencies = ["wearable-common", "numpy", "scipy", "pandas"]
+
+[project.optional-dependencies]
+research = ["scikit-learn", "joblib", "threadpoolctl", "xgboost", "lightgbm", "cvxEDA", "cvxopt", "torch", "matplotlib"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

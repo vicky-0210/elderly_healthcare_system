@@ -1,0 +1,8 @@
+{
+  "source_records": 21799,
+  "patient_overlap": 0,
+  "duplicate_payload_records": 0,
+  "duplicate_payload_groups_crossing_folds": 0,
+  "isolated_lvh_diagnostic_records": 456,
+  "manifest_sha256": "9734b30f024f50b110b0853d7ff740cd1245452ff703b8c8a1e8bad42493b7b1"
+}

@@ -1,0 +1,27 @@
+{
+  "participants": 15,
+  "age_min": 24,
+  "age_max": 35,
+  "age_mean": 27.466666666666665,
+  "age_sd": 2.4455985731416305,
+  "gender_counts": {
+    "male": 12,
+    "female": 3
+  },
+  "recordings_hours": 24.13,
+  "sha256_verified": 15,
+  "binary_baseline_windows": 1008,
+  "binary_stress_windows": 628,
+  "excluded_context_codes": [
+    0,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "binary_purity": 0.8,
+  "cvxeda_qp_states": {
+    "optimal": 731
+  }
+}

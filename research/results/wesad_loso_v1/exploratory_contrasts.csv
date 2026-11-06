@@ -1,0 +1,9 @@
+contrast,a,b,subjects,same_windows,delta_macro_f1,low,high,improved,tied,paired_dz,p,holm_p
+"Full-wrist RBF SVM versus two-sensor logistic, zero calibration",classical/rbf_svm__eda-acc-temp-bvp__zero,classical/logistic__eda-acc__zero,15,True,0.0346257329129837,-0.00619673385926407,0.07560877595931913,10,1,0.413418523935795,0.13214263150106428,0.8980221495937732
+"PG-MSTN versus logistic, EDA and motion",neural/pg_zero,classical/logistic__eda-acc__zero,15,True,-0.03259069492539146,-0.08780227257905189,0.02057994912944071,6,1,-0.29430588493231546,0.3484936431918063,1.0
+"Reliability-aware network versus RBF SVM, calibrated EDA and motion",neural/reliable_rest,classical/rbf_svm__eda-acc__rest,15,True,-0.0014527222953579406,-0.025313773900545882,0.019893859701589082,5,4,-0.031122369278489367,1.0,1.0
+"Longer optimization, PG-MSTN with motion",neural/pg_long_zero,neural/pg_zero,15,True,0.02230201117643673,-0.006396645334441997,0.06188322770633508,4,7,0.3221071284764924,0.629508929312552,1.0
+"Longer optimization, full-wrist PG-MSTN",neural/pg_fullwrist_long_zero,neural/pg_fullwrist_zero,15,True,0.01718319331859838,-0.003804492096853836,0.045236576391433754,5,9,0.336960266753313,0.12828887851339618,0.8980221495937732
+"Longer optimization, EDA-only multi-scale TCN",neural/multitcn_long_zero,neural/multitcn_zero,15,True,-0.015560727754511087,-0.04425025672061978,0.008489504959480166,2,9,-0.28708669075349524,0.34802965846634837,1.0
+MC-SAED versus offline cvxEDA with PG-MSTN,neural/pg_zero,neural/pg_cvxeda_zero,15,True,-0.011661885732592022,-0.04316302919766934,0.02309297256568431,6,2,-0.17028067127433533,0.37771131786857015,1.0
+Motion-conditioned quality versus EDA-only assessment in PG-MSTN,neural/pg_zero,neural/pg_intrinsic_quality_zero,15,True,-0.0024317881219221367,-0.005457830098238244,0.0,0,12,-0.44924923542601497,0.08378893804239139,0.6703115043391311

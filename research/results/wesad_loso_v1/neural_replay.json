@@ -1,0 +1,30 @@
+{
+  "prediction": {
+    "schema_version": "1.0",
+    "signal": "eda",
+    "status": "ok",
+    "scores": {
+      "baseline": 0.9947458505630493,
+      "stress_associated_arousal": 0.005254143849015236
+    },
+    "stream_id": "replay-S2",
+    "clock_domain": "WESAD synchronized seconds",
+    "quality_flags": [],
+    "model_version": "neural/pg_fullwrist_zero",
+    "preprocessing_version": "wesad-wrist-v1",
+    "threshold_version": "temperature-scaled-argmax-v1",
+    "window_start": 435.0,
+    "window_end": 495.0,
+    "mean_eda_quality": 1.0
+  },
+  "missing_signal_check": "insufficient_signal",
+  "offline_max_abs_diff": 0.0,
+  "prefix_seconds": 495.0,
+  "timed_calls": 25,
+  "cpu_threads": 1,
+  "cpu": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+  "prefix_to_prediction_p50_ms": 11.03189997957088,
+  "prefix_to_prediction_p95_ms": 12.097539991373196,
+  "python_traced_peak_bytes": 3640537,
+  "scope": "Host CPU, complete prefix preprocessing and scoring after model load. Python-traced allocations exclude native framework workspaces."
+}

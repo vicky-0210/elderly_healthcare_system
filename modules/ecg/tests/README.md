@@ -1,9 +1,13 @@
-# ECG tests
+# ECG checks
 
-`unit/`: loader, validation, label, split, preprocessing and window semantics.
+Run from the repository root after installing the ECG/common packages:
 
-`integration/`: synthetic data preparation, export/inference parity and the module predictor contract.
+```powershell
+.\.venv\Scripts\python.exe -m pytest modules/ecg/tests -q
+```
 
-`fixtures/`: tiny synthetic samples only. Full PTB-XL data remain local. Hardware integration tests requiring devices belong in the root `tests/hardware/` or use explicit opt-in markers once implemented.
+Unit checks cover exact statement cohorts, unknown-confidence positives, contradictions, patient-fold independence, source/output separation, physical-voltage resampling, neural forward/backward paths, parameter limits, FFT/direct state-space equivalence, export-kernel equivalence, calibrated-input/gap rejection, tied-score thresholds and monotonic probability calibration.
 
-No tests are implemented yet.
+The experiment adds data-dependent verification: official checksums, source rehashing after training, duplicate waveform checks, cohort counts and ONNX parity on eligible training records. Public datasets and individual predictions remain outside versioned test fixtures.
+
+The tests do not establish clinical fidelity, external-domain accuracy or Jetson timing.

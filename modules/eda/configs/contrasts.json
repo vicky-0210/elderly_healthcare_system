@@ -1,0 +1,15 @@
+[
+  ["A1 tonic/phasic channels (feature branch held off)", "neural/pg_no_hand_zero", "neural/pg_no_components_no_hand_zero"],
+  ["A2 explicit resting calibration", "neural/pg_rest", "neural/pg_zero"],
+  ["A3 movement and motion-dependent quality", "neural/pg_zero", "neural/pg_eda_zero"],
+  ["A4 quality-conditioned gating versus learned gating", "neural/pg_zero", "neural/pg_gated_zero"],
+  ["A5 feature branch", "neural/pg_zero", "neural/pg_no_hand_zero"],
+  ["A6 masked pretraining", "neural/masked_multitcn_zero", "neural/multitcn_zero"],
+  ["A7 multiscale phasic convolution", "neural/pg_zero", "neural/pg_single_scale_zero"],
+  ["A8 addition of temperature", "neural/pg_temp_zero", "neural/pg_zero"],
+  ["A9 addition of BVP", "neural/pg_fullwrist_zero", "neural/pg_temp_zero"],
+  ["A10 physiological auxiliary loss", "neural/physics_zero", "neural/physics_no_aux_zero"],
+  ["Component-aware contrastive pretraining", "neural/contrast_tonic_zero", "neural/tonic_attention_zero"],
+  ["MC-SAED versus cvxEDA on EDA-only random forest", "classical/random_forest__eda__zero", "classical/ablation__random_forest__cvxeda"],
+  ["Motion contribution to artifact assessment on shared inputs", "classical/random_forest__eda-acc__zero", "classical/ablation__rf__eda-acc__quality-eda"]
+]

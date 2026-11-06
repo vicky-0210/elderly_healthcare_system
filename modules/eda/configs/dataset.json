@@ -1,40 +1,22 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "eda",
+  "schema_version": "1.1",
+  "status": "implemented",
   "dataset": "WESAD",
-  "dataset_version": null,
-  "root_key": "wesad",
-  "stream": "wrist EDA (Empatica E4)",
-  "sample_rate_hz": 4,
-  "preserve_subject_identity": true,
-  "split": {
-    "strategy": "subject_independent",
-    "group_id": "subject_id",
-    "manifest_required": true
-  },
-  "labels": {
-    "source_mapping": {
-      "0": "transition_undefined",
-      "1": "baseline",
-      "2": "stress",
-      "3": "amusement",
-      "4": "meditation"
-    },
-    "include": [
-      1,
-      2
-    ],
-    "exclude": [
-      0,
-      3,
-      4
-    ],
-    "target_mapping": {
-      "1": 0,
-      "2": 1
-    },
-    "source_label_sample_rate_hz": null,
-    "alignment": "align annotation time base to wrist EDA before windowing"
-  }
+  "source": "S{subject}/S{subject}.pkl",
+  "cache": "data/eda/processed/wesad_v1",
+  "deployment_signal": "Empatica E4 wrist signal research proxy",
+  "wrist_rates_hz": {"EDA": 4, "ACC": 32, "TEMP": 4, "BVP": 64},
+  "source_label_hz": 700,
+  "counts_per_eda_tick": 175,
+  "window_seconds": 60,
+  "stride_seconds": 15,
+  "minimum_label_fraction": 0.8,
+  "primary_protocol_codes": [1, 2],
+  "primary_targets": {"1": 0, "2": 1},
+  "secondary_protocol_codes": [[1, 2, 3], [1, 2, 3, 4]],
+  "non_target_codes": [0, 5, 6, 7],
+  "split_group": "subject",
+  "outer_split": "leave_one_subject_out",
+  "calibration_rest_seconds": 120,
+  "calibration_and_earlier_windows_excluded_in_all_protocols": true
 }

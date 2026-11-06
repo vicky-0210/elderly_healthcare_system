@@ -1,13 +1,14 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "eda",
-  "task": "Laboratory baseline versus stress detection",
-  "random_seed": 42,
-  "optimizer": null,
-  "batch_size": null,
-  "epochs": null,
-  "split_config": "dataset.json",
-  "artifacts_signal": "eda",
-  "fit_preprocessing_on_train_only": true
+  "study": "wesad_loso_v1",
+  "configuration_authority": ["wearable_eda.training.classical_run.experiments", "wearable_eda.training.neural_experiments.catalogue"],
+  "classical_seed_base": 6703,
+  "neural_seed_base": 971,
+  "optimizer": "AdamW",
+  "initial_lr": 0.002,
+  "weight_decay": 0.001,
+  "max_epochs": 6,
+  "patience": 3,
+  "batch_size": 256,
+  "neural_width": 16,
+  "task_classes": [[1,2], [1,2,3], [1,2,3,4]]
 }

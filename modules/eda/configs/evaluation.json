@@ -1,21 +1,13 @@
 {
   "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "eda",
-  "group_by": "subject_id",
-  "subject_independent": true,
-  "required_views": [
-    "baseline_vs_stress",
-    "subject_generalization",
-    "optional_motion_ablation",
-    "hardware_domain"
-  ],
-  "metrics": [
-    "AUROC",
-    "AUPRC",
-    "balanced_accuracy",
-    "F1",
-    "calibration",
-    "coverage"
-  ]
+  "study": "wesad_loso_v1",
+  "outer": "leave-one-participant-out",
+  "inner_offsets_in_sorted_subject_ids": [1, 8],
+  "inner_metric": "mean participant macro F1",
+  "endpoint": "stress-associated physiological arousal during the laboratory protocol",
+  "protocols": ["zero", "rest"],
+  "bootstrap_unit": "participant",
+  "bootstrap_samples": 5000,
+  "contrasts": "contrasts.json",
+  "deployment_rule": "within 0.01 of highest inner macro F1, then fewer sensors, smaller artifact, experiment ID"
 }

@@ -1,0 +1,20 @@
+{
+  "evaluation_folds": [
+    7,
+    8
+  ],
+  "fit_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "reference_records": 128,
+  "noise": "synthetic baseline, 50-Hz interference, white noise; held-out RNG seed",
+  "reference": "unaltered PTB-XL recording; not a certified clean signal",
+  "fiducials": "Automatic engineering proxies; manual/cardiologist review and clinical delineation are outstanding",
+  "zscore_note": "Excluded from physical mV/morphology-error comparisons because its output is dimensionless. Its cached signals are reserved for a classifier-level amplitude-removal ablation.",
+  "selection_policy": "Evaluation describes the frozen controller; no retuning from these results."
+}

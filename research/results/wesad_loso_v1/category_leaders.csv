@@ -1,0 +1,19 @@
+group,protocol,inner_choice,inner_macro_f1,choice_outer_macro_f1,descriptive_highest,highest_outer_macro_f1
+Traditional,zero,classical/logistic__eda-acc__zero,0.8856939406448245,0.8733610368429462,classical/rbf_svm__eda-acc-temp-bvp__zero,0.90798676975593
+Standalone DL,zero,neural/lstm_zero,0.8029697086339583,0.759064499771731,neural/lstm_zero,0.759064499771731
+Hybrid DL,zero,neural/pg_fullwrist_zero,0.8703139692935564,0.8195524231800674,neural/pg_zero,0.8407703419175547
+Self-supervised,zero,neural/contrast_tonic_zero,0.8038553046995118,0.7555794384092228,neural/contrast_tonic_zero,0.7555794384092228
+Any DL,zero,neural/pg_fullwrist_zero,0.8703139692935564,0.8195524231800674,neural/pg_zero,0.8407703419175547
+EDA only,zero,classical/xgboost__eda__zero,0.8185975501466854,0.8098500136433072,classical/random_forest__eda__zero,0.8246522130057355
+EDA + motion,zero,classical/logistic__eda-acc__zero,0.8856939406448245,0.8733610368429462,classical/rbf_svm__eda-acc__zero,0.8750654260539247
+All candidates,zero,classical/logistic__eda-acc__zero,0.8856939406448245,0.8733610368429462,classical/rbf_svm__eda-acc-temp-bvp__zero,0.90798676975593
+Lightweight,zero,classical/logistic__eda-acc__zero,0.8856939406448245,0.8733610368429462,,
+Traditional,rest,classical/rbf_svm__eda-acc-temp__rest,0.9155163458207781,0.9028197091033797,classical/rbf_svm__eda-acc-temp-bvp__rest,0.909121323393741
+Standalone DL,rest,neural/cnn_rest,0.8687766188042896,0.8294242558177463,neural/bilstm_rest,0.8564149307484541
+Hybrid DL,rest,neural/reliable_rest,0.9221687546694871,0.8986305053941622,neural/reliable_rest,0.8986305053941622
+Self-supervised,rest,neural/masked_multitcn_rest,0.8332291763232024,0.7997831664737309,neural/masked_multitcn_rest,0.7997831664737309
+Any DL,rest,neural/reliable_rest,0.9221687546694871,0.8986305053941622,neural/reliable_rest,0.8986305053941622
+EDA only,rest,classical/rbf_svm__eda__rest,0.8725084750624946,0.8676602527017251,classical/rbf_svm__eda__rest,0.8676602527017251
+EDA + motion,rest,neural/reliable_rest,0.9221687546694871,0.8986305053941622,classical/rbf_svm__eda-acc__rest,0.90008322768952
+All candidates,rest,neural/reliable_rest,0.9221687546694871,0.8986305053941622,classical/rbf_svm__eda-acc-temp-bvp__rest,0.909121323393741
+Lightweight,rest,classical/rbf_svm__eda-acc__rest,0.9141151405461952,0.90008322768952,,

@@ -4,10 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wearable-ecg"
-version = "0.1.0"
-description = "ECG research and inference module scaffold"
+version = "0.2.0"
+description = "Independent PTB-XL LVH-pattern research and buffered inference pipeline"
 readme = "README.md"
-dependencies = ["wearable-common"]
+requires-python = ">=3.10"
+dependencies = ["wearable-common", "numpy>=1.26", "scipy>=1.11", "pandas>=2", "torch>=2.6", "scikit-learn>=1.4", "PyWavelets>=1.5", "wfdb>=4.1", "matplotlib>=3.8", "joblib>=1.3"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+export = ["onnx>=1.17", "onnxruntime>=1.21"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

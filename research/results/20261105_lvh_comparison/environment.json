@@ -1,0 +1,17 @@
+{
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "PyWavelets": "1.8.0",
+    "matplotlib": "3.10.1",
+    "wfdb": "4.3.0"
+  },
+  "cuda": "12.4",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "device_memory_bytes": 4294443008
+}

@@ -1,0 +1,53 @@
+{
+  "records_checked": 128,
+  "folds_eligible": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "max_waveform_error_mv": 0.0,
+  "max_feature_errors": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "reference": "Original WFDB physical mV, float64 retained until after resampling",
+  "float32_rounded_input_feature_errors": [
+    1.1920928955078125e-07,
+    1.1920928955078125e-07,
+    1.4901161193847656e-08,
+    2.384185791015625e-07,
+    1.1920928955078125e-07,
+    5.960464477539063e-08,
+    3.725290298461914e-09,
+    0.0,
+    2.2351741790771484e-08,
+    5.960464477539063e-08,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00027817487716674805,
+    0.0
+  ],
+  "precision_note": "Pre-rounding raw samples to float32 is a different input representation; the flat-sample count can differ by one sample. Preserve float64 calibration through resampling.",
+  "waveform_tolerance_mv": 2e-06,
+  "feature_tolerance": 2e-05,
+  "passed": true
+}

@@ -1,7 +1,5 @@
 # ECG environments
 
-`research/` reserves tested training/evaluation dependency locks.
+`research/requirements.txt` pins the direct dependencies used by the Windows CUDA workstation experiment. Every run also records a full `requirements.lock.txt`, Python/package versions and GPU identity. The local `.venv` is ignored by Git.
 
-`inference/` reserves the minimal model/preprocessing runtime dependency specification.
-
-Do not copy workstation dependency versions onto Jetson without checking the target stack. Shared packages must not import a training framework at import time. No framework or lockfile has been selected yet.
+The inference implementation currently uses the same preprocessing and PyTorch dependencies; ONNX inference requires the matching feature/preprocessing front end. No original Jetson Nano environment is claimed. Establish a separate compatible JetPack/Python/TensorRT environment and run FP32/FP16 parity plus hardware tests before deployment.

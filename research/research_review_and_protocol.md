@@ -2,9 +2,34 @@
 
 Prepared 5 November 2026. Based on the supplied R&D brief, a focused search of PTB-XL-using/citing research, primary papers and official hardware documentation, and a fresh audit of the public PTB-XL 1.0.3 metadata.
 
+## Progress as of 6 November 2026
+
+The team completed 30 supervised training runs on PTB-XL 1.0.3 using 10-second Lead II windows resampled from 500 to 360 Hz. Each architecture ran with five seeds on each of two cohorts. The strict-normal comparison included 9,383 recordings. The broader comparison included 21,798 recordings and treated other abnormal ECGs as eligible controls. Both cohorts contained 2,131 recordings with an LVH diagnostic statement.
+
+**Held-out results.** Values are means across five individual models per architecture. Development used official patient folds 1–6 for fitting and 7–8 for epoch selection. Each run then refitted on folds 1–8 and used fold 9 to calibrate probabilities and set a threshold targeting 90% specificity. The table gives the observed results on fold 10. Average precision summarizes the precision–recall curve.
+
+| Comparison | Model | AUROC | Average precision | Sensitivity | Specificity |
+|---|---|---:|---:|---:|---:|
+| LVH vs strict normal | CNN | 0.933 | 0.884 | 82.2% | 90.8% |
+| LVH vs strict normal | CNN + diagonal state-space model | 0.900 | 0.837 | 76.3% | 90.5% |
+| LVH vs strict normal | CNN + Transformer | 0.910 | 0.851 | 77.1% | 91.2% |
+| LVH vs all other ECGs | CNN | 0.811 | 0.402 | 52.0% | 89.2% |
+| LVH vs all other ECGs | CNN + diagonal state-space model | 0.792 | 0.378 | 47.5% | 89.5% |
+| LVH vs all other ECGs | CNN + Transformer | 0.787 | 0.378 | 47.7% | 89.5% |
+
+The CNN achieved the highest mean test AUROC on both tasks. Including other cardiac abnormalities reduced its sensitivity from 82.2% to 52.0% at the frozen operating thresholds. The prespecified development criterion selected the CNN for strict normal and the CNN + Transformer for the broader task. The held-out results above describe how those choices generalized. [Development selection](results/20261105_lvh_comparison/development_selection.csv) · [Per-seed metrics](results/20261105_lvh_comparison/comparison_per_seed.csv)
+
+**Preprocessing and novelty.** The fitted controller selected minimal correction for every cached recording. The architecture comparison therefore measures performance on minimally corrected, calibrated Lead II signals. The proposed denoising benefit remains unproven. The development experiment records waveform and morphology errors under synthetic noise. [Preprocessing fidelity graph](results/20261105_lvh_comparison/preprocessing/preprocessing_fidelity.png)
+
+**Verification and outputs.** Recomputing AUROC, average precision and confusion counts from fold-10 predictions reproduced the saved metrics for all 30 runs. All 12 regression checks and all six ONNX export comparisons passed. Runtime preprocessing reproduced the cached waveform and all 16 features exactly on 128 original training records. After training, all 43,601 source-file hashes matched. The full report includes patient-bootstrap intervals, age-65+ results and operating thresholds. [Full report](results/20261105_lvh_comparison/RESULTS.md) · [Age subgroup graph](results/20261105_lvh_comparison/plots/lvh_vs_rest/age_subgroups.png) · [Input parity](results/20261105_lvh_comparison/inference_input_parity.json) · [Source integrity](results/20261105_lvh_comparison/source_integrity_after.json)
+
+**Open work.** The research hypothesis still requires classifier-level preprocessing ablations and a controlled comparison of ordinary and reliability-weighted cross-lead distillation. External validation, BioAmp recordings and physical Jetson Nano timing remain pending. The current endpoint is the PTB-XL ECG annotation. Anatomical LVH validation requires paired imaging evidence.
+
+## Original research plan and literature review
+
 **Recommendation.** Develop a compact, dual-path convolutional Transformer that retains a separate calibrated voltage representation. Train it with a 12-lead teacher using a proposed reliability-weighted distillation objective. Couple it to a proposed preprocessing method whose noise reduction is constrained by measured voltage, QRS and ST/T fidelity. Evaluate Mamba as a matched alternative, not as an assumed improvement. The scientific contribution should be preservation and transfer of usable single-lead evidence under acquisition noise, rather than merely a new combination of named neural-network blocks.
 
-This is a research specification, not a trained or validated system. No waveform models or hardware benchmarks were run. The review is targeted, not an exhaustive systematic review of every PTB-XL citation. Numerical results below belong to their respective papers and are not forecasts for this project. A literature search cannot certify worldwide novelty; the proposed contributions require a closer prior-art comparison and experiments before making a first-of-its-kind claim.
+The original specification below predates the supervised runs summarized above. The review is targeted, not an exhaustive systematic review of every PTB-XL citation. Numerical results below belong to their respective papers and are not forecasts for this project. A literature search cannot certify worldwide novelty; the proposed contributions require a closer prior-art comparison and experiments before making a first-of-its-kind claim.
 
 **What the relevant papers establish.** Full methods/results were inspected where accessible; access limitations are identified in the table. Preprints are distinguished from published papers. PTB-XL tasks, lead counts, sampling rates and evaluation splits vary substantially, so these results are not a single leaderboard.
 

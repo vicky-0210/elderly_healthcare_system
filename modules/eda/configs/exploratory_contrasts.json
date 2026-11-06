@@ -1,0 +1,10 @@
+[
+  ["Full-wrist RBF SVM versus two-sensor logistic, zero calibration", "classical/rbf_svm__eda-acc-temp-bvp__zero", "classical/logistic__eda-acc__zero"],
+  ["PG-MSTN versus logistic, EDA and motion", "neural/pg_zero", "classical/logistic__eda-acc__zero"],
+  ["Reliability-aware network versus RBF SVM, calibrated EDA and motion", "neural/reliable_rest", "classical/rbf_svm__eda-acc__rest"],
+  ["Longer optimization, PG-MSTN with motion", "neural/pg_long_zero", "neural/pg_zero"],
+  ["Longer optimization, full-wrist PG-MSTN", "neural/pg_fullwrist_long_zero", "neural/pg_fullwrist_zero"],
+  ["Longer optimization, EDA-only multi-scale TCN", "neural/multitcn_long_zero", "neural/multitcn_zero"],
+  ["MC-SAED versus offline cvxEDA with PG-MSTN", "neural/pg_zero", "neural/pg_cvxeda_zero"],
+  ["Motion-conditioned quality versus EDA-only assessment in PG-MSTN", "neural/pg_zero", "neural/pg_intrinsic_quality_zero"]
+]
