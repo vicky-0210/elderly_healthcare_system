@@ -1,12 +1,17 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "ppg",
+  "study": "osasud_v1",
   "sensor": "MAX30102",
-  "optical_channel": null,
-  "sample_rate_hz": null,
-  "window_seconds": null,
-  "hop_seconds": null,
-  "event_aggregation_policy": null,
-  "score_semantics": "Apnea/hypopnea event screening; distinguish event and window outputs"
+  "nominal_rate_hz": 100,
+  "channel_default": "ir",
+  "channel_options": [
+    "ir",
+    "red"
+  ],
+  "context_seconds": 30,
+  "hop_seconds": 5,
+  "timestamp": "First sample in each one-second output interval",
+  "availability": "Exclusive end of the five-second prediction block",
+  "alert_confirmation_seconds": 5,
+  "calibration_and_threshold": "Read from exported runtime.json",
+  "validation_status": "Workstation ONNX and simulated transfer; physical sensor and Jetson measurements pending"
 }

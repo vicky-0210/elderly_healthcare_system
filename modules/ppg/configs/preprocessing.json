@@ -1,11 +1,25 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "ppg",
-  "preserve_timestamps": true,
-  "gap_detection": true,
-  "discontinuity_policy": null,
-  "resample_hz": null,
-  "filtering": null,
-  "normalization": null
+  "study": "osasud_v1",
+  "valid_sample_rates_hz": [
+    80,
+    100
+  ],
+  "discontinuities": "Restart causal state after gaps, missing packets or full-second flatlines",
+  "haar": "Median-deviation shrinkage of finest detail within each second",
+  "cardiac_band_hz": [
+    0.45,
+    5.5
+  ],
+  "modulation_band_hz": [
+    0.08,
+    0.38
+  ],
+  "gain_reference_seconds": 45,
+  "energy_ewma_seconds": 8,
+  "features": {
+    "pulse": 16,
+    "modulation": 11,
+    "quality": 4
+  },
+  "normalization": "Train-only median and IQR, fallback to standard deviation, scale floor 0.01, then asinh"
 }

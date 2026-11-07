@@ -1,0 +1,5 @@
+# Local per-patient manifests, diagnostics and plots
+/cohort.csv
+/folds.csv
+/patient_metrics.csv
+/figures/patient_performance.png

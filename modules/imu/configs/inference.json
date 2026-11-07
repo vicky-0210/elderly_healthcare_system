@@ -1,22 +1,13 @@
 {
   "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "imu",
   "sensor": "MPU-9250",
-  "input_axes": [
-    "acc_x",
-    "acc_y",
-    "acc_z",
-    "gyro_x",
-    "gyro_y",
-    "gyro_z"
-  ],
-  "sample_rate_hz": null,
-  "window_seconds": null,
-  "hop_seconds": null,
-  "alarm_policy": {
-    "threshold": null,
-    "cooldown_seconds": null
-  },
-  "score_semantics": "Fall/ADL screening; onset timing not established by trial labels"
+  "selected_bundle": "artifacts/imu/exports/sisfall_v1/native_100",
+  "sample_rate_hz": 100,
+  "window_seconds": 2,
+  "hop_seconds": 1,
+  "cooldown_seconds": 5,
+  "rearm_below_windows": 2,
+  "threshold_source": "runtime.json",
+  "wire_protocol": "I2C FIFO",
+  "score_semantics": "Calibrated trial probability on recording maxima; operational evidence per window"
 }

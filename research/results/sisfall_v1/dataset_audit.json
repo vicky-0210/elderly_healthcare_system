@@ -1,0 +1,48 @@
+{
+  "source_files": 4505,
+  "included": 4500,
+  "excluded": 5,
+  "participants": 38,
+  "fall_subjects": [
+    "SA01",
+    "SA02",
+    "SA03",
+    "SA04",
+    "SA05",
+    "SA06",
+    "SA07",
+    "SA08",
+    "SA09",
+    "SA10",
+    "SA11",
+    "SA12",
+    "SA13",
+    "SA14",
+    "SA15",
+    "SA16",
+    "SA17",
+    "SA18",
+    "SA19",
+    "SA20",
+    "SA21",
+    "SA22",
+    "SA23",
+    "SE06"
+  ],
+  "older_fall_subjects": [
+    "SE06"
+  ],
+  "adl": 2702,
+  "fall": 1798,
+  "adl_hours": 14.500298611111111,
+  "hours": 21.991568055555554,
+  "seconds_range": [
+    9.995,
+    180.0
+  ],
+  "acc_rail_samples": 13,
+  "gyro_rail_samples": 9,
+  "repeated_six_axis_rows": 522,
+  "native_rows": 15833929,
+  "manifest_sha256": "2e0aa280ea7e90d0877fcc90a89d4686cbd37fe2e02c1fd3d253e78ce1af70d7"
+}

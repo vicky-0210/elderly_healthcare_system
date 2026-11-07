@@ -1,0 +1,14 @@
+{
+  "model": "native_100",
+  "hardware": "Windows-11-10.0.26200-SP0",
+  "engine": "numpy",
+  "golden_max_logit_error": 0.0,
+  "decisions_changed": 0,
+  "decisions": 300,
+  "hops": 300,
+  "p50_ms": 0.877499999887732,
+  "p95_ms": 1.292260000082024,
+  "max_ms": 1.7321000000265485,
+  "hop_ms": 1000.0,
+  "missed_deadlines": 0
+}

@@ -1,7 +1,21 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "ppg",
-  "architecture": null,
-  "input_channels": null
+  "study": "osasud_v1",
+  "candidates": [
+    "cnn_transformer",
+    "tcn_gru",
+    "wavelet_ssm",
+    "quality_cross_attention"
+  ],
+  "controls": [
+    "morphology_only",
+    "modulation_only",
+    "fixed_fusion",
+    "quality_only",
+    "context_10",
+    "context_20",
+    "lag10"
+  ],
+  "hidden_width": 32,
+  "multitask_head": "Five dense seconds, each with one binary event logit and four conditional subtype logits",
+  "exported": "cnn_transformer"
 }

@@ -1,0 +1,15 @@
+{
+  "model": "cnn_transformer",
+  "epochs": 2,
+  "onnx_bytes": 137245,
+  "probe_blocks": 128,
+  "max_logit_error": 7.152557373046875e-07,
+  "stream_probability_errors": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "host": "Windows-11-10.0.26200-SP0",
+  "host_model_p50_ms": 0.1142999990406679,
+  "host_model_p95_ms": 0.1259599992408766
+}

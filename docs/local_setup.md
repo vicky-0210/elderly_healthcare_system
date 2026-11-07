@@ -25,7 +25,7 @@ For example, after creating your development environment:
 python -m pip install -e packages/common -e modules/ecg
 ```
 
-The ECG package includes a PyTorch research pipeline and pinned dependencies; follow modules/ecg/README.md. Equivalent package scaffolds for PPG, IMU and EDA still contain implementation-pending entry points. Each team owns its independent environment.
+Each module documents its research environment and data preparation. The PPG workflow reads the local OSASUD release through an explicit source argument. [ECG setup](../modules/ecg/README.md) · [PPG setup and verification](../modules/ppg/README.md) · [IMU setup](../modules/imu/README.md) · [EDA setup](../modules/eda/README.md)
 
 Add dependencies to the owning package and record reproducible environment locks when actual code is introduced. The directories under `environments/` are reserved for that work. Avoid a single environment containing every team's experiment stack.
 

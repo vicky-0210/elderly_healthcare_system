@@ -1,0 +1,16 @@
+menu,outer,model
+all,0,grid_3s_50
+all,1,cnn_bigru
+all,2,grid_3s_50
+all,3,cnn_acc
+all,4,gru
+primary,0,lstm
+primary,1,lstm
+primary,2,cnn
+primary,3,cnn_channel
+primary,4,gru
+neural,0,lstm
+neural,1,lstm
+neural,2,cnn
+neural,3,cnn_channel
+neural,4,gru

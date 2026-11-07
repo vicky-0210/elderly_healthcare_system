@@ -1,0 +1,12 @@
+{
+  "dual_candidate": "dual_hard",
+  "nested_dual_choices": [
+    "dual_fraction",
+    "dual_hard",
+    "dual_aux",
+    "dual_hard",
+    "dual_hard"
+  ],
+  "overall_validation_choice": "cnn_transformer",
+  "rule": "Highest validation macro-patient AP, within .005 prefer validation patient event F1 then fewer parameters"
+}

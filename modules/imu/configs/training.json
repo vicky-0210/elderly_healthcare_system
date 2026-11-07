@@ -1,13 +1,18 @@
 {
   "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "imu",
-  "task": "Fall versus ADL detection",
-  "random_seed": 42,
-  "optimizer": null,
-  "batch_size": null,
-  "epochs": null,
-  "split_config": "dataset.json",
-  "artifacts_signal": "imu",
-  "fit_preprocessing_on_train_only": true
+  "executable_catalogue": "src/wearable_imu/training/catalogue.py",
+  "primary_candidates": 22,
+  "controlled_configurations": 46,
+  "folds": 5,
+  "seed": 4907,
+  "additional_seeds": [
+    6203,
+    7919
+  ],
+  "deep_optimizer": "AdamW",
+  "learning_rate": 0.0018,
+  "batch_trials": 96,
+  "default_epochs": 5,
+  "objective": "class-weighted binary cross entropy on maximum window logit",
+  "weak_witness_followup": "dm_distilled"
 }

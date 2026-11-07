@@ -1,0 +1,34 @@
+{
+  "folds_verified": 340,
+  "additional_folds_verified": 45,
+  "trial_decisions_verified": 306000,
+  "source_files_rehashed": 4500,
+  "manifest_sha256": "2e0aa280ea7e90d0877fcc90a89d4686cbd37fe2e02c1fd3d253e78ce1af70d7",
+  "export_streaming": [
+    {
+      "model": "dm_distilled",
+      "max_chunk_difference": 0.0,
+      "source_trials": 3
+    },
+    {
+      "model": "dm_standard",
+      "max_chunk_difference": 0.0,
+      "source_trials": 3
+    },
+    {
+      "model": "dm_tcn",
+      "max_chunk_difference": 0.0,
+      "source_trials": 3
+    },
+    {
+      "model": "inception",
+      "max_chunk_difference": 0.0,
+      "source_trials": 3
+    },
+    {
+      "model": "native_100",
+      "max_chunk_difference": 0.0,
+      "source_trials": 3
+    }
+  ]
+}

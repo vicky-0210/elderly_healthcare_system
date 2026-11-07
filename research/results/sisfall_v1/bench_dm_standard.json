@@ -1,0 +1,14 @@
+{
+  "model": "dm_standard",
+  "hardware": "Windows-11-10.0.26200-SP0",
+  "engine": "onnx",
+  "golden_max_logit_error": 0.0,
+  "decisions_changed": 0,
+  "decisions": 300,
+  "hops": 300,
+  "p50_ms": 1.9214999999803695,
+  "p95_ms": 2.6751199997306685,
+  "max_ms": 6.922999999915191,
+  "hop_ms": 1000.0,
+  "missed_deadlines": 0
+}

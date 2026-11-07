@@ -5,9 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "wearable-ppg"
 version = "0.1.0"
-description = "PPG research and inference module scaffold"
+description = "OSASUD respiratory-event research and single-channel optical inference"
 readme = "README.md"
 dependencies = ["wearable-common"]
+
+[project.optional-dependencies]
+inference = ["numpy", "scipy", "onnxruntime"]
+research = ["numpy", "scipy", "pandas", "torch", "scikit-learn", "matplotlib", "onnx", "onnxruntime", "pytest"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

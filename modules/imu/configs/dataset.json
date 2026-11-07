@@ -1,39 +1,35 @@
 {
   "schema_version": "1.0",
-  "status": "scaffold",
   "signal": "imu",
   "dataset": "SisFall",
-  "dataset_version": null,
-  "root_key": "sisfall",
-  "sample_rate_hz": 200,
-  "preserve_subject_identity": true,
-  "source_subject_id_field": null,
-  "split": {
-    "strategy": "subject_independent",
-    "group_id": "subject_id",
-    "manifest_required": true
-  },
-  "channels": {
-    "selected_accelerometer": null,
-    "selected_gyroscope": null,
-    "target_six_axes": [
-      "acc_x",
-      "acc_y",
-      "acc_z",
-      "gyro_x",
-      "gyro_y",
-      "gyro_z"
+  "input": "prepare_data.py --source <release-directory>",
+  "native_rate_hz": 200,
+  "columns_one_based": {
+    "adxl345": [
+      1,
+      2,
+      3
     ],
-    "raw_column_mapping": null,
-    "unit_conversion": null
+    "itg3200": [
+      4,
+      5,
+      6
+    ],
+    "mma8451q_excluded": [
+      7,
+      8,
+      9
+    ]
+  },
+  "conversion": {
+    "g_per_adxl345_count": 0.00390625,
+    "dps_per_itg3200_count": 0.06103515625
   },
   "labels": {
-    "target_classes": [
-      "ADL",
-      "FALL"
-    ],
-    "activity_to_class_mapping": null,
-    "exact_fall_onset_available": false,
-    "window_label_policy": null
-  }
+    "D01_D19": 0,
+    "F01_F15": 1
+  },
+  "label_unit": "recording",
+  "fold_group": "subject",
+  "fold_seed": 1701
 }

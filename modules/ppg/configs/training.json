@@ -1,13 +1,15 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "ppg",
-  "task": "Apnea and hypopnea detection",
-  "random_seed": 42,
-  "optimizer": null,
-  "batch_size": null,
-  "epochs": null,
-  "split_config": "dataset.json",
-  "artifacts_signal": "ppg",
-  "fit_preprocessing_on_train_only": true
+  "study": "osasud_v1",
+  "seed_base": 6811,
+  "seed_per_fold": "seed_base + fold",
+  "optimizer": "AdamW",
+  "learning_rate": 0.001,
+  "weight_decay": 0.005,
+  "batch_size_max": 192,
+  "max_epochs": 10,
+  "patience": 3,
+  "gradient_clip": 2,
+  "conditional_loss_weight": 0.35,
+  "uniform_windows_per_patient_per_epoch": 400,
+  "event_windows_per_patient_per_epoch": 240
 }

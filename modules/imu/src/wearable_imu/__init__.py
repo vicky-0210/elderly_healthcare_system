@@ -1,1 +1,1 @@
-"""Independent IMU pipeline package; implementation pending."""
+"""Six-axis SisFall research and streaming waist IMU inference."""

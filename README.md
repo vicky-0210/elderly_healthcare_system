@@ -2,7 +2,9 @@
 
 Repository scaffold for four independent signal pipelines and their eventual integration on NVIDIA Jetson Nano.
 
-The [ECG module](modules/ecg/README.md) implements the PTB-XL LVH workflow. The [EDA module](modules/eda/README.md) implements WESAD wrist preprocessing, participant-independent training and evaluation, and research replay for stress-associated physiological arousal. See the [WESAD protocol](research/wesad_research_protocol.md) and [comparison report](research/results/wesad_loso_v1/README.md). PPG, IMU, acquisition, API and frontend are scaffolded. Hardware validation is pending.
+The [ECG module](modules/ecg/README.md) implements the PTB-XL LVH workflow. The [EDA module](modules/eda/README.md) implements WESAD wrist preprocessing, participant-independent training and evaluation, and research replay for stress-associated physiological arousal. See the [WESAD protocol](research/wesad_research_protocol.md) and [comparison report](research/results/wesad_loso_v1/README.md). The [IMU module](modules/imu/README.md) includes the SisFall multi-model study and MPU-9250 streaming path. See the [fall-detection results](research/results/sisfall_v1/REPORT.md).
+
+The PPG team trained four respiratory-event architectures on OSASUD and evaluated seven controls across five patient-independent folds. The module includes an ONNX export and MAX30102 research acquisition. Held-out event recall and false-alarm burden limit its use to research. The API and frontend are scaffolded. Physical wearable validation is pending. [PPG workflow](modules/ppg/README.md) · [Comparison and graphs](research/results/osasud_v1/REPORT.md)
 
 | Module | Dataset | Intended task | Wearable source |
 | --- | --- | --- | --- |

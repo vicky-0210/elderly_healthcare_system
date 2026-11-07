@@ -1,11 +1,24 @@
 {
   "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "imu",
-  "axis_mapping": null,
-  "unit_conversion": null,
-  "orientation_policy": null,
-  "filtering": null,
-  "resample_hz": null,
-  "normalization": null
+  "implementation": "wearable_imu.preprocessing.ipmv.IPMV",
+  "physical_input": [
+    "Ax_g",
+    "Ay_g",
+    "Az_g",
+    "Gx_dps",
+    "Gy_dps",
+    "Gz_dps"
+  ],
+  "primary_input_rate_hz": 200,
+  "selected_edge_rate_hz": 100,
+  "token_rate_hz": 20,
+  "default_filter": {
+    "order": 2,
+    "acc_hz": 30,
+    "gyro_hz": 30,
+    "adaptive": true
+  },
+  "gravity_hz": 0.75,
+  "primary_wavelet": "db2",
+  "normalization": "Fit only on training data; parameters travel with export"
 }

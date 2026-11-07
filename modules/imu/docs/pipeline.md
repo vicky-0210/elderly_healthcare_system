@@ -1,9 +1,7 @@
-# IMU pipeline
+# IMU signal and decision pipeline
 
-Partition subjects before overlapping windows. Distinguish trial-level fall labels from window labels: a fall trial is not proof that every window contains a fall. Freeze any weak-label or manual-annotation procedure. Keep a dedicated sliding-window evaluator and alarm aggregation policy.
+The 100 Hz edge candidate runs six physical axes through the causal IPMV front end, 20 Hz tokens, two-second windows with a one-second hop, a compact XGBoost estimator and an alarm policy. For 100 Hz research replay, apply causal 40 Hz antialiasing at the original 200 Hz and decimate. A device configured at 100 Hz supplies actual 100 Hz physical samples.
 
-Offline stages: load -> validate -> construct/audit group splits -> map labels and segment by the documented policy -> fit preprocessing on training data -> train -> evaluate -> export.
+The default representation uses magnitude extrema and derivatives from native-rate samples, adaptive per-sensor filtering, a gravity estimate and gravity-relative projections, and native-rate causal db2 wavelet coefficient energies. The RNN and convolutional models operate on completed windows. Trial supervision takes the maximum window score. The final scalar sigmoid is calibrated on recording maxima. Streaming window evidence drives local alerts and has no independently validated event probability.
 
-Runtime stages: validate the live window -> apply matching preprocessing -> predict -> produce status/scores using the shared contract. The order of label alignment, gap handling and windowing remains signal-specific; do not use a universal pipeline merely because folders share names.
-
-Implement training and evaluation entry points in `scripts/` with reusable logic under `src/`. Store fitted transformations with the export. Architecture/window choices and measurements are pending, not supplied defaults.
+The report documents window geometry, filter alternatives, fold-fitted normalization, neural branch fusion, weak witness learning and comparisons. [Study protocol](../../../research/sisfall_protocol.md) · [Measured results](../../../research/results/sisfall_v1/REPORT.md)

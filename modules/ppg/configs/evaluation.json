@@ -1,21 +1,14 @@
 {
-  "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "ppg",
-  "group_by": "patient_id",
-  "patient_independent": true,
-  "required_views": [
-    "window_level",
-    "event_level",
-    "hardware_domain"
+  "study": "osasud_v1",
+  "selection_metric": "Validation mean within-patient average precision",
+  "tie_tolerance": 0.005,
+  "tiebreakers": [
+    "higher mean validation patient event F1",
+    "fewer parameters"
   ],
-  "metrics": [
-    "AUROC",
-    "AUPRC",
-    "sensitivity",
-    "specificity",
-    "event_recall",
-    "false_alarms_per_hour"
-  ],
-  "event_matching_tolerance_seconds": null
+  "minimum_alert_seconds": 5,
+  "greedy_interval_iou_min": 0.3,
+  "coverage": "Scored seconds only",
+  "confidence_interval": "Percentile bootstrap over 30 patients, 3000 draws",
+  "exploratory_low_burden_target_validation_fp_per_hour": 1
 }

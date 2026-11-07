@@ -1,39 +1,53 @@
-# IMU module
+# Waist IMU fall detection
 
-Dataset: **SisFall**. Intended task: **Fall versus ADL detection**.
+This module scores fall versus ADL trials from SisFall and runs sliding-window inference on six calibrated MPU-9250 axes. Start with the [research report and graphs](../../research/results/sisfall_v1/REPORT.md), [literature review](../../research/sisfall_literature.md) and [study protocol](../../research/sisfall_protocol.md).
 
-This module is independent of the other signal pipelines. Algorithms, framework, architecture and windowing are not prescribed by the shared structure.
+## Verify the completed study
 
-## Locations
+Run from the **team repository root** in PowerShell with its research virtual environment.
 
-| Path | Responsibility |
-| --- | --- |
-| `src/wearable_imu/datasets/` | Public-dataset loaders and provenance |
-| `src/wearable_imu/validation/` | Signal/data integrity checks |
-| `src/wearable_imu/labels/` | Dataset-specific label mapping and exclusions |
-| `src/wearable_imu/windowing/` | Segmentation, timestamps and boundary rules |
-| `src/wearable_imu/preprocessing/` | Signal-specific fitted and runtime transformations |
-| `src/wearable_imu/models/` | Model definitions |
-| `src/wearable_imu/training/` | Training, objectives and checkpoint lifecycle |
-| `src/wearable_imu/evaluation/` | Offline, subject/patient and sensor-domain evaluation |
-| `src/wearable_imu/inference/` | Export loading, input validation and prediction interface |
-| `configs/` | Independent dataset, preprocessing, model, training, evaluation and inference configs |
-| `scripts/` | Prepare/train/evaluate/export entry-point stubs |
-| `experiments/` | Versioned experiment configs and exploratory notebooks |
-| `tests/` | Module unit/integration tests and synthetic fixtures |
-| `docs/` | Dataset, pipeline and hardware-domain documentation |
-| `environments/` | Research/inference dependency locks once implementations exist |
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q modules/imu/tests
+.\.venv\Scripts\python.exe modules/imu/scripts/verify_results.py --source "C:\Final Project\Datasets\sisfall\SisFall_dataset"
+.\.venv\Scripts\python.exe modules/imu/scripts/bench_edge.py artifacts/imu/exports/sisfall_v1/native_100
+```
 
-Dataset root: `dataset_roots.sisfall` in repository `configs/paths.local.json`. Local working data: `data/imu/`. Own checkpoints, exports, reports and runs: `artifacts/imu/`. These payloads are ignored by Git.
+The verifier recomputes confusion counts from individual held-out decisions, checks group identities, compares file hashes, and replays complete and fragmented recordings through the exports. Only `--save` writes a verification summary. The source argument is optional for collaborators without a local SisFall copy.
 
-## Non-negotiable data rules
+## Reproduce the experiments
 
-SisFall is sampled at 200 Hz. Preserve subject and trial/activity identity. Explicitly select one accelerometer and one gyroscope stream for the six-axis wearable experiment; do not assume all raw columns match the MPU-9250 configuration. Document raw units and conversion factors.
+```powershell
+.\.venv\Scripts\python.exe modules/imu/scripts/prepare_data.py --source "C:\Final Project\Datasets\sisfall\SisFall_dataset"
+.\.venv\Scripts\python.exe modules/imu/scripts/train.py
+.\.venv\Scripts\python.exe modules/imu/scripts/audit_filters.py
+.\.venv\Scripts\python.exe modules/imu/scripts/evaluate.py
+.\.venv\Scripts\python.exe modules/imu/scripts/export.py
+.\.venv\Scripts\python.exe modules/imu/scripts/export.py --experiments dm_standard inception
+.\.venv\Scripts\python.exe modules/imu/scripts/validate_transfer.py
+.\.venv\Scripts\python.exe modules/imu/scripts/validate_transfer.py --experiments dm_standard inception
+foreach ($seed in 4907,6203,7919) {
+    .\.venv\Scripts\python.exe modules/imu/scripts/train.py --seed $seed --experiments dm_tcn dm_standard inception dm_distilled
+}
+.\.venv\Scripts\python.exe modules/imu/scripts/summarize_seeds.py
+.\.venv\Scripts\python.exe modules/imu/scripts/export.py --experiments dm_distilled
+.\.venv\Scripts\python.exe modules/imu/scripts/inspect_signals.py
+.\.venv\Scripts\python.exe modules/imu/scripts/validate_transfer.py --experiments dm_distilled
+foreach ($name in 'dm_tcn','dm_standard','inception','dm_distilled') {
+    .\.venv\Scripts\python.exe modules/imu/scripts/check_precision.py --model $name
+}
+foreach ($name in 'native_100','dm_tcn','dm_standard','inception','dm_distilled') {
+    .\.venv\Scripts\python.exe modules/imu/scripts/bench_edge.py "artifacts/imu/exports/sisfall_v1/$name" --build-reference
+}
+```
 
-Check subject IDs, activity mapping, channel order, units, saturation, sample count/rate and subject-disjoint splits. Do not report exact onset accuracy without appropriate additional time annotations.
+Use `train.py --list` to inspect model IDs and `--experiments cnn gru dm_tcn` to run a subset. For a fresh replication use a separate `--root` and pass the same path to evaluation and export. Training resumes completed folds. The executable definitions in `src/wearable_imu/training/catalogue.py` specify the exact settings. Each fold stores its effective configuration, scalers, participant lists and threshold. See the [dataset contract](docs/dataset.md), [signal pipeline](docs/pipeline.md) and [Jetson/MPU guide](docs/hardware_validation.md).
 
-Keep split construction/auditing module-owned under `datasets/splits/`. Keep hardware-domain evaluation under `evaluation/hardware_domain/`. Shared helpers may check group overlap, but must not replace this module's split policy.
+| Location from the repository root | Contents |
+|---|---|
+| `research/results/sisfall_v1/` | Report, plots, comparison and validation tables |
+| `artifacts/imu/runs/sisfall_v1/<experiment>/fold0…fold4/` | Fitted checkpoints, scores per recording and window, validation decisions and provenance |
+| `artifacts/imu/runs/sisfall_v1_seed<seed>/` | Repeat runs |
+| `artifacts/imu/exports/sisfall_v1/<experiment>/` | Inference bundle, fitted preprocessing metadata, threshold and reference check |
+| `data/imu/processed/sisfall_v1/` | Derived six-axis cache and source-hashed trial manifest |
 
-## Implementation status
-
-Configs are templates. Null fields require explicit decisions and validation before use. Scripts and `IMUPredictor` intentionally raise an implementation-pending error. No training, inference, sensor acquisition or score calculation is implemented. Do not import training code from the inference package.
+Research dependencies and the target runtime are documented in [environments](environments/README.md). Live acquisition is under `acquisition/src/wearable_acquisition/drivers/mpu9250`.

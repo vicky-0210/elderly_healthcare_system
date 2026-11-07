@@ -1,0 +1,14 @@
+{
+  "model": "dm_distilled",
+  "hardware": "Windows-11-10.0.26200-SP0",
+  "engine": "onnx",
+  "golden_max_logit_error": 0.0,
+  "decisions_changed": 0,
+  "decisions": 300,
+  "hops": 300,
+  "p50_ms": 2.0088500002657383,
+  "p95_ms": 2.8936849997080576,
+  "max_ms": 6.255400000100053,
+  "hop_ms": 1000.0,
+  "missed_deadlines": 0
+}

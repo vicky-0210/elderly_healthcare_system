@@ -1,0 +1,14 @@
+{
+  "model": "dual_hard",
+  "participants": 30,
+  "epochs": 9,
+  "parameters": 9097,
+  "onnx_bytes": 71673,
+  "parity_blocks": 128,
+  "max_logit_error": 1.9669532775878906e-06,
+  "max_stream_probability_errors": [
+    5.960464477539063e-08,
+    5.960464477539063e-08,
+    5.960464477539063e-08
+  ]
+}

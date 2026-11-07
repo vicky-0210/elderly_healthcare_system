@@ -1,12 +1,5 @@
-"""Entry-point placeholder for PPG evaluation."""
-
-
-def main():
-    raise SystemExit(
-        "Scaffold only: PPG evaluation is not implemented. "
-        "See modules/ppg/README.md."
-    )
-
-
-if __name__ == "__main__":
-    main()
+from pathlib import Path
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"src"))
+from wearable_ppg.evaluation.compare import compare
+if __name__=="__main__": compare()

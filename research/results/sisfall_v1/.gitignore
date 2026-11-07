@@ -1,0 +1,9 @@
+# Local pseudonymous trial/subject breakdowns and full prediction traces.
+all_oof_trials.csv.gz
+selected_trials.csv.gz
+transfer_trials*.csv.gz
+filter_trials.csv.gz
+subject_audit.csv
+subgroups.csv
+excluded.csv
+replicate_trials.csv.gz

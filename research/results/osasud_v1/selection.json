@@ -1,0 +1,40 @@
+{
+  "winner": "cnn_transformer",
+  "outer_choices": [
+    "cnn_transformer",
+    "tcn_gru",
+    "cnn_transformer",
+    "tcn_gru",
+    "cnn_transformer"
+  ],
+  "reference_binary_runs": 6608,
+  "runs_with_any_score": 5984,
+  "runs_scored_completely": 5926,
+  "selection": "mean inner patient AP; within 0.005 prefer validation patient event F1 then fewer parameters",
+  "nested": {
+    "model": "nested_selection",
+    "seconds": 821545,
+    "participants": 30,
+    "prevalence": 0.15955912335903694,
+    "patient_ap": 0.23814578959872898,
+    "ap": 0.1965252661631354,
+    "auc": 0.5691750812682896,
+    "precision": 0.19372840540257566,
+    "recall": 0.5646107487508105,
+    "specificity": 0.5538800220143093,
+    "binary_f1": 0.28847551766138857,
+    "brier": 0.13481703400611877,
+    "five_macro_f1": 0.1993109081298166,
+    "event_tp": 3171,
+    "event_fp": 16061,
+    "event_fn": 2814,
+    "event_f1": 0.25149700598802394,
+    "event_precision": 0.1648814475873544,
+    "event_recall": 0.5298245614035088,
+    "patient_event_f1": 0.22463291402415747,
+    "false_events_per_hour": 70.3791027880396,
+    "median_confirmation_delay_s": 7.0,
+    "ap_ci_lo": 0.17043869735251735,
+    "ap_ci_hi": 0.30686339885988084
+  }
+}

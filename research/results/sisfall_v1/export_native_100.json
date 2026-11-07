@@ -1,0 +1,30 @@
+{
+  "experiment": "native_100",
+  "engine": "numpy",
+  "file_bytes": 8195,
+  "metadata_bytes": 1368,
+  "refit_model_bytes": 15673,
+  "tested_windows": 256,
+  "max_logit_error": 1.430511474609375e-06,
+  "threshold_disagreements": 0,
+  "model_sha256": "411fc9f48ee42550a5d170f65ba0fa61649c9aac6910b5aad468c20372ecd847",
+  "host": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+  "single_window": {
+    "p50_ms": 0.1711,
+    "p95_ms": 0.247915,
+    "calls": 200
+  },
+  "full_hop": {
+    "p50_ms": 1.01965,
+    "p95_ms": 1.3633199999999999,
+    "calls": 200
+  },
+  "window_s": 2.0,
+  "hop_s": 1.0,
+  "final_threshold": 1.9181925,
+  "calibration": [
+    0.8977351022814442,
+    -1.1390411078260425
+  ]
+}

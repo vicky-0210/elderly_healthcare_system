@@ -1,0 +1,22 @@
+{
+  "source_bytes": 3280142234,
+  "source_sha256": "dbfac3e44ab7dcc0b05e68657b7dd90b21b8c47e8a23a8378bc10de9b81a343d",
+  "source_md5": "b9ed560f4abf6100ce02cfc7cb0c121f",
+  "patients": 30,
+  "rows": 961357,
+  "totals": {
+    "rows": 961357,
+    "usable": 830468,
+    "nonfinite": 130309,
+    "flat_finite": 580,
+    "duplicate_seconds": 0,
+    "missing_seconds": 0,
+    "source_reversals": 0,
+    "unknown_labels": 0,
+    "NONE": 815917,
+    "HYPOPNEA": 78035,
+    "APNEA-CENTRAL": 10828,
+    "APNEA-OBSTRUCTIVE": 44217,
+    "APNEA-MIXED": 12360
+  }
+}

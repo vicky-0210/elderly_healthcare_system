@@ -1,20 +1,11 @@
 {
   "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "imu",
-  "group_by": "subject_id",
-  "subject_independent": true,
-  "required_views": [
-    "trial_level",
-    "sliding_window",
-    "continuous_ADL",
-    "hardware_domain"
-  ],
-  "metrics": [
-    "sensitivity",
-    "specificity",
-    "AUPRC",
-    "false_alarms_per_hour"
-  ],
-  "onset_latency_requires_additional_annotations": true
+  "group_by": "subject",
+  "outer_folds": 5,
+  "inner_validation": "next group modulo five",
+  "minimum_inner_mean_subject_specificity": 0.95,
+  "practical_tie_margin": 0.005,
+  "selection_report": "research/results/sisfall_v1/selection.json",
+  "continuous_ADL_reset": "each original recording",
+  "onset_latency": "requires independent time annotations"
 }

@@ -1,7 +1,9 @@
 {
   "schema_version": "1.0",
-  "status": "scaffold",
-  "signal": "imu",
-  "architecture": null,
-  "input_axes": 6
+  "task": "recording-level fall vs ADL",
+  "primary_candidate": "dm_tcn",
+  "all_candidate_selection": "native_100",
+  "best_first_seed_neural_ablation": "dm_standard",
+  "standardized_deep_inputs": 24,
+  "artifact_directory": "artifacts/imu/exports/sisfall_v1"
 }

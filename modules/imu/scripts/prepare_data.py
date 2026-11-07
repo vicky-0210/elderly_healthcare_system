@@ -1,12 +1,7 @@
-"""Entry-point placeholder for IMU data preparation."""
+from pathlib import Path
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"src"))
+from wearable_imu.datasets.sisfall import main
 
-
-def main():
-    raise SystemExit(
-        "Scaffold only: IMU data preparation is not implemented. "
-        "See modules/imu/README.md."
-    )
-
-
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
