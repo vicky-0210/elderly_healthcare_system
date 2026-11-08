@@ -1,0 +1,17 @@
+# Jetson Orin Nano target inference environment
+# Tested on JetPack 5.1 / 6.0 (Ubuntu 20.04 / 22.04 LTS, Python 3.8 - 3.10)
+
+numpy>=1.22.0
+scipy>=1.8.0
+joblib>=1.1.0
+onnx>=1.14.0
+
+# ONNX Runtime for aarch64 Jetson (install system/JetPack wheel or via pip):
+# For CPU only:
+# onnxruntime>=1.15.0
+# For GPU (CUDA/TensorRT):
+# onnxruntime-gpu (download appropriate JetPack wheel from NVIDIA / eLinux)
+
+# Optional dependencies for PyTorch / I2C streaming:
+# torch (install official NVIDIA PyTorch wheel for Jetson: https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048)
+# smbus2>=0.4.0
