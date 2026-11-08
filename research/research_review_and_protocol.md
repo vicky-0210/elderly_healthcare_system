@@ -230,3 +230,7 @@ Use a 10-second buffer with a proposed 2-second update stride. The first result 
 The user-facing output should be a quality status plus a screening score for LVH-associated ECG patterns. A low score must not be called anatomical LVH exclusion or a globally normal ECG. An unusable signal should request reacquisition rather than return a reassuring negative classification.
 
 **Final design decision.** The first complete candidate is: calibrated Lead II acquisition → integrity/quality assessment → constrained baseline/mains subtraction and bounded SWT correction → parallel morphology and voltage representations → compact convolutional Transformer with reliability-weighted fusion → training-time gated cross-lead distillation → frozen calibration/threshold → measured FP16 Nano deployment. Mamba and JEPA are controlled comparisons or teacher upgrades. Publication-strength novelty depends on demonstrating the proposed mechanisms improve voltage/morphology fidelity and external single-lead robustness beyond the closest existing methods.
+
+## Teacher-to-student follow-up, 8 November 2026
+
+The E0–E10 study uses LVH versus eligible remaining ECGs. It compares privileged twelve-lead supervision, the complete confidence-aware morphology model, and a prospectively selected single-channel wearable student. Fold 9 supplies calibration, and repeated ECGs are grouped by patient for the primary fold-10 evaluation. [Follow-up findings and limitations](results/lvh_distill_v1/REPORT.md) · [Full framework ablations](results/lvh_distill_v1/joint_ablation.csv)

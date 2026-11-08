@@ -1,0 +1,7 @@
+{
+  "model": "prep_minimal",
+  "onnx_bytes": 73247,
+  "checked": 59,
+  "attempted": 59,
+  "max_raw_chain_logit_error": 8.344650268554688e-07
+}

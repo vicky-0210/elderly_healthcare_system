@@ -1,0 +1,6 @@
+{
+  "student": "prep_minimal",
+  "teacher": "E2_inception",
+  "combined": "E3",
+  "rule": "mean fold 7/8 patient AP; within .005 maximize sensitivity at 90% specificity, then F1, then fewer parameters and latency; cross-fold Brier <= E0 + .01"
+}

@@ -1,0 +1,15 @@
+{
+  "names": [
+    "E3",
+    "E4_T1_w0.6",
+    "E5_repr",
+    "E5_gate_only",
+    "E5_conf_gate",
+    "joint_full",
+    "joint_no_teacher",
+    "prep_minimal",
+    "E2_inception",
+    "E0"
+  ],
+  "rule": "E3, validation-selected E4, all E5 factorial controls, selected student, teacher, E0"
+}

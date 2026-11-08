@@ -49,3 +49,7 @@ Full outputs live under ignored `artifacts/ecg/` and `data/ecg/`. The shareable 
 - `experiments/configs/lvh_comparison.json`: fully specified executed research experiment. The older `configs/*.json` files describe module-level integration contracts; their unchosen hardware fields remain null.
 
 The state-space comparator is **not Mamba**. The preprocessing controller is an experimental realization with automatic fiducial proxies, not a validated novel clinical algorithm. Cross-lead distillation/pretraining and the publication-strength ablation program in `research/research_review_and_protocol.md` remain subsequent experiments; the supervised comparison does not silently stand in for them.
+
+## PTB-XL teacher-to-student follow-up
+
+The second study reproduced the original CNN, trained three 12-lead teachers and evaluated single-lead distillation, confidence weighting, statement supervision, masked pretraining, explicit morphology fusion, sampling rate and imbalance controls. Its development-selected student accepts calibrated Lead II. [Results and graphs](../../research/results/lvh_distill_v1/REPORT.md) · [Run the ablations and wearable replay](experiments/lvh_distillation/README.md)

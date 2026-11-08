@@ -1,0 +1,486 @@
+{
+  "aug": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "augment": true
+  },
+  "E1": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "deep": true,
+    "fusion": "features"
+  },
+  "E2_concat": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "teacher": "concat",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "E2_inception": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "teacher": "inception",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "E2_lead_attention": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "teacher": "lead_attention",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "E3": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "E4_T1_w0.2": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.2
+  },
+  "E4_T1_w0.6": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6
+  },
+  "E4_T3_w0.2": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 3,
+    "kd": 0.2
+  },
+  "E4_T3_w0.6": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 3,
+    "kd": 0.6
+  },
+  "E5_conf_gate": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15,
+    "gate": true
+  },
+  "E5_gate_only": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "gate": true
+  },
+  "E5_repr": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15
+  },
+  "E6_exclude50": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "exclude": 50
+  },
+  "E6_exclude80": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "exclude": 80
+  },
+  "E6_soft": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "label": "soft"
+  },
+  "E6_weighted": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "label": "weighted"
+  },
+  "E7_conduction": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "aux": [
+      1
+    ]
+  },
+  "E7_mi": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "aux": [
+      3
+    ]
+  },
+  "E7_other_hyp": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "aux": [
+      2
+    ]
+  },
+  "E7_stt": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "aux": [
+      0
+    ]
+  },
+  "E8_masked": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "ssl": true
+  },
+  "E9_all": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "fusion": "all"
+  },
+  "E9_beat": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "fusion": "beat"
+  },
+  "E9_features": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "fusion": "features"
+  },
+  "E9_no_quality": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "fusion": "no_quality"
+  },
+  "imb_adjust": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "adjust",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "imb_balanced": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "balanced",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "imb_cbfocal": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "cbfocal",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "imb_focal": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "focal",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "imb_mining": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "mining",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "joint_fixed_fusion": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15,
+    "gate": true,
+    "label": "weighted",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fusion": "no_quality"
+  },
+  "joint_full": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15,
+    "gate": true,
+    "label": "weighted",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fusion": "all"
+  },
+  "joint_hard_labels": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15,
+    "gate": true,
+    "label": "hard",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fusion": "all"
+  },
+  "joint_no_aux": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15,
+    "gate": true,
+    "label": "weighted",
+    "aux": [],
+    "fusion": "all"
+  },
+  "joint_no_conf_gate": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15,
+    "gate": false,
+    "label": "weighted",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fusion": "all"
+  },
+  "joint_no_logit": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0,
+    "rep": 0.15,
+    "gate": true,
+    "label": "weighted",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fusion": "all"
+  },
+  "joint_no_morphology": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0.15,
+    "gate": true,
+    "label": "weighted",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "joint_no_repr": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "T": 1,
+    "kd": 0.6,
+    "rep": 0,
+    "gate": true,
+    "label": "weighted",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fusion": "all"
+  },
+  "joint_no_teacher": {
+    "hz": 360,
+    "pp": "constrained",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "label": "weighted",
+    "aux": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fusion": "all"
+  },
+  "prep_conventional_fixed": {
+    "hz": 360,
+    "pp": "conventional_fixed",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "prep_drift": {
+    "hz": 360,
+    "pp": "drift",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "prep_hz100": {
+    "hz": 100,
+    "pp": "hz100",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "prep_mains": {
+    "hz": 360,
+    "pp": "mains",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "prep_minimal": {
+    "hz": 360,
+    "pp": "minimal",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1"
+  },
+  "prep_robust": {
+    "hz": 360,
+    "pp": "minimal",
+    "loss": "weighted",
+    "epochs": 7,
+    "compute": "cuda_amp_v1",
+    "robust": true
+  }
+}

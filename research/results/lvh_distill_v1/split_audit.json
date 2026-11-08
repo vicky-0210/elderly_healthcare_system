@@ -1,0 +1,24 @@
+{
+  "patients": 18868,
+  "recordings": 21798,
+  "patient_fold_overlap": 0,
+  "features": [
+    "p01_mv",
+    "p99_mv",
+    "rms_mv",
+    "span_mv",
+    "r_amplitude_mv",
+    "s_amplitude_mv",
+    "qrs_area_mv_s",
+    "qrs_width_proxy_s",
+    "st_proxy_mv",
+    "t_proxy_mv",
+    "heart_rate_proxy",
+    "rr_cv",
+    "correction_rms_mv",
+    "disagreement_rms_mv",
+    "quality",
+    "delineation_available"
+  ],
+  "source_adc_rails": "unavailable; plateau and dwell flags are proxies"
+}
