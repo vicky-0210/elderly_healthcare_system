@@ -1,0 +1,8 @@
+Modality,Task,Model_Architecture,Parameters,Accuracy_Percent,F1_Score_Percent,Precision_Percent,Recall_Sens_Percent,Specificity_Percent,AUROC,Evaluation_Cohort
+ECG (PTB-XL),Left Ventricular Hypertrophy,Multiscale 1D CNN + Voltage,94753,89.29,78.41,74.17,83.18,91.16,0.9382,Fold 10 Held-Out (N=915)
+IMU (SisFall),Elderly Fall Detection,100 Hz IPMV + XGBoost,60 Trees,98.51,98.04,97.32,98.72,98.11,0.9912,5-Group Subject-Indep (N=4500)
+EDA (WESAD),Autonomic Stress Detection,31-coef Logistic MC-SAED,31,88.58,87.34,91.04,82.94,92.41,0.9665,15-Subject LOSO (N=1636)
+PPG (OSASUD),Sleep Apnea & Hypopnea,Two-Scale Causal TCN + GRU,9097,62.85,29.96,21.03,52.11,62.85,0.5944,30-Patient Held-Out (821k sec)
+SpO2 (OSASUD),Apnea / Desaturation,SpO2 1D-CNN (ONNX),137250,73.50,81.10,94.33,71.12,82.98,0.8291,2400s Replay (N=234)
+SpO2 (OSASUD),Apnea / Desaturation,SpO2 Gradient-Boosting (GBM),150 Trees,77.78,85.64,88.57,82.89,57.45,0.7776,2400s Replay (N=234)
+SpO2 (OSASUD),Apnea / Desaturation,Dual-Stream Ensemble,Combined,73.93,81.79,92.57,73.26,76.60,0.8247,2400s Replay (N=234)

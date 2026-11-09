@@ -1,0 +1,19 @@
+Target_Task,Model_Architecture,Parameters_or_Size,Accuracy_Percent,F1_Score_Percent,Precision_Percent,Recall_Sens_Percent,Specificity_Percent,AUROC,AUPRC_or_AP,Clinical_Notes
+ECG: LVH Detection,Multiscale 1D CNN (Winner),94753 params (395 KB),89.29,78.41,74.17,83.18,91.16,0.9382,0.8917,Highest AUROC; preserves millivolt amplitudes
+ECG: LVH Detection,CNN + Temporal Transformer,92835 params (482 KB),87.98,75.45,72.22,78.97,90.73,0.9150,0.8597,Captures cross-beat temporal dynamics
+ECG: LVH Detection,CNN + State Space Model (SSM),82529 params (550 KB),87.65,75.06,71.13,79.44,90.16,0.9116,0.8582,Mamba-style linear recurrent state-space scan
+ECG: LVH Detection,Distilled Single-Lead Student,22465 params (94 KB),85.49,41.28,34.27,51.49,89.48,0.8040,0.4373,Privileged knowledge distilled from 12-lead teacher
+IMU: Fall Detection,100 Hz IPMV + XGBoost (Winner),60 Trees (8.2 KB),98.51,98.04,97.32,98.72,98.11,0.9912,0.9850,Ultra-compact; 3.59 false alerts/h over 14.5h ADL
+IMU: Fall Detection,Teacher-Distilled DM-TCN,5846 params (68.0 KB),98.61,98.20,97.60,98.80,98.40,0.9935,0.9910,Stabilized by weak witness teacher; 2.55 false alerts/h
+IMU: Fall Detection,Standard DM-TCN (No Distillation),5846 params (68.0 KB),93.56,94.80,98.10,91.70,96.00,0.9906,0.9840,Subject to high seed variance (82.6% to 99.0%)
+IMU: Fall Detection,Compact InceptionTime,14208 params (142.0 KB),96.32,98.14,98.20,98.22,98.70,0.9920,0.9860,6 inception modules; 3.91 false alerts/h
+EDA: Stress Detection,31-coef Logistic MC-SAED (Winner),31 params (1.9 KB),88.58,87.34,91.04,82.94,92.41,0.9665,0.9539,Causal asymmetric decomposition; 15-subject LOSO
+EDA: Stress Detection,PG-MSTN Full Wrist Neural Network,9323 params (52.1 KB),85.83,84.08,87.93,80.59,89.32,0.9681,0.9567,Multi-scale tonic and phasic TCNs + motion gating
+EDA: Stress Detection,Rest-Calibrated PG-MSTN Fusion,8275 params (46.2 KB),90.92,89.86,91.20,87.88,93.03,0.9855,0.9788,Normalized against 2-min resting baseline
+EDA: Stress Detection,LightGBM on MC-SAED,Gradient Trees (60.6 KB),87.49,85.34,88.48,84.03,89.92,0.9702,0.9591,Non-linear feature interactions on wrist signals
+PPG: Apnea Detection,Two-Scale Causal TCN + GRU (Winner),9097 params (36.4 KB),62.85,29.96,21.03,52.11,62.85,0.5944,0.2467,Patient AP 0.247 vs 0.160 base; 56.2 false alerts/h
+PPG: Apnea Detection,Multiscale CNN + Transformer,25573 params (102.3 KB),53.22,28.76,19.10,58.18,53.22,0.5784,0.2376,Patient AP 0.238; 68.8 false alerts/h
+PPG: Apnea Detection,Binary TCN + GRU,15425 params (61.7 KB),51.94,29.19,19.25,60.36,51.94,0.5776,0.2422,Patient AP 0.242; 68.2 false alerts/h
+SpO2: Apnea Detection,SpO2 1D-CNN (ONNX),137250 params (548.9 KB),73.50,81.10,94.33,71.12,82.98,0.8291,0.8840,High precision (94.3%); 2400s continuous replay
+SpO2: Apnea Detection,SpO2 Gradient-Boosting (GBM),150 Trees (62.6 KB),77.78,85.64,88.57,82.89,57.45,0.7776,0.8410,Highest overall accuracy (77.8%) and recall (82.9%)
+SpO2: Apnea Detection,Dual-Stream Rank Ensemble,Combined (624.1 KB),73.93,81.79,92.57,73.26,76.60,0.8247,0.8790,Robust rank-average fusion of 1D-CNN and GBM

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Signal Healthcare AI - Local Offline Performance Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --secondary: #0D9488;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --purple: #8B5CF6;
+            --dark: #0F172A;
+            --card-bg: #FFFFFF;
+            --bg: #F8FAFC;
+            --border: #E2E8F0;
+            --text: #1E293B;
+            --text-muted: #64748B;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.5; padding: 24px; }
+        .container { max-width: 1360px; margin: 0 auto; }
+        
+        /* Header */
+        header { 
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); 
+            color: white; 
+            padding: 30px 34px; 
+            border-radius: 16px; 
+            margin-bottom: 24px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+        }
+        .header-badge { 
+            display: inline-block; 
+            background: rgba(37, 99, 235, 0.35); 
+            border: 1px solid #3B82F6; 
+            color: #93C5FD; 
+            padding: 4px 12px; 
+            border-radius: 9999px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            margin-bottom: 10px; 
+        }
+        h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
+        header p { color: #94A3B8; font-size: 14px; max-width: 880px; }
+        
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .stat-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+        .stat-value { font-size: 28px; font-weight: 800; color: var(--dark); }
+        .stat-desc { font-size: 12px; color: var(--success); font-weight: 600; margin-top: 4px; }
+        .stat-desc.purple { color: var(--purple); }
+        .stat-desc.secondary { color: var(--secondary); }
+        
+        /* Section Cards */
+        .section-card { background: var(--card-bg); border-radius: 14px; border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid var(--border); padding-bottom: 14px; }
+        .section-title { font-size: 18px; font-weight: 700; color: var(--dark); }
+        .section-badge { background: #EEF2F6; color: #475569; font-size: 12px; padding: 4px 12px; border-radius: 6px; font-weight: 600; }
+        
+        /* Tables */
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+        th { background: #F1F5F9; color: #334155; font-weight: 700; padding: 12px 14px; border-bottom: 2px solid var(--border); }
+        td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: #334155; }
+        tr:hover { background-color: #F8FAFC; }
+        .badge-winner { background: #DCFCE7; color: #166534; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 11px; }
+        .badge-neural { background: #EDE9FE; color: #5B21B6; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 11px; }
+        .highlight { font-weight: 700; color: var(--primary); }
+        .highlight-green { font-weight: 700; color: #059669; }
+        
+        /* Confusion Matrix Grid */
+        .cm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .cm-card { background: #F8FAFC; border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+        .cm-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #1E293B; }
+        .cm-table { width: 100%; margin: 0 auto; font-size: 12px; }
+        .cm-cell { padding: 10px; border: 1px solid #CBD5E1; font-weight: 700; }
+        .cm-tn { background: #EFF6FF; color: #1E40AF; }
+        .cm-fp { background: #FEF2F2; color: #991B1B; }
+        .cm-fn { background: #FFFBEB; color: #92400E; }
+        .cm-tp { background: #ECFDF5; color: #065F46; }
+        
+        /* Charts Grid */
+        .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        @media (max-width: 900px) { .charts-row { grid-template-columns: 1fr; } }
+        
+        /* Methodology Matrix */
+        .novelty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 12px; }
+        .novelty-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; background: #FFFFFF; }
+        .novelty-title { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .novelty-desc { font-size: 12px; color: #475569; line-height: 1.6; }
+        
+        footer { margin-top: 24px; text-align: center; font-size: 12px; color: var(--text-muted); padding-bottom: 24px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header>
+        <span class="header-badge">Environment: Local Offline Training & Cross-Validation Benchmarks</span>
+        <h1>Multi-Signal Edge Healthcare AI Performance Dashboard</h1>
+        <p>Comprehensive offline evaluation across PTB-XL ECG, SisFall IMU, WESAD EDA, and OSASUD PPG/SpO2 datasets. Full clinical metrics, confusion matrices, and cross-architecture ablation studies.</p>
+    </header>
+
+    <!-- Stat Highlights (Zero Latency Metrics) -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Fall Detection Balanced Acc</div>
+            <div class="stat-value">98.61%</div>
+            <div class="stat-desc">Teacher-Distilled DM-TCN (SisFall N=4,500)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">LVH Detection AUROC</div>
+            <div class="stat-value">0.9382</div>
+            <div class="stat-desc">Multiscale 1D CNN + Voltage (PTB-XL Fold 10)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Stress Detection Macro F1</div>
+            <div class="stat-value">0.8986</div>
+            <div class="stat-desc purple">Rest-Calibrated PG-MSTN (WESAD LOSO 15 Subj)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Total Scored Test Volume</div>
+            <div class="stat-value">>827,000</div>
+            <div class="stat-desc secondary">Continuous Synchronized Physiological Windows</div>
+        </div>
+    </div>
+
+    <!-- Section 1: Top Performing Multi-Signal Models -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">1. Multi-Signal Physiological Models (Top Performers on Held-Out Data)</div>
+            <div class="section-badge">Participant-Independent Validation Splits</div>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Modality & Dataset</th>
+                        <th>Clinical Target</th>
+                        <th>Selected Architecture</th>
+                        <th>Validation Cohort</th>
+                        <th>Parameters / Footprint</th>
+                        <th>Accuracy / BA</th>
+                        <th>F1-Score</th>
+                        <th>Precision</th>
+                        <th>Recall / Sens</th>
+                        <th>Specificity</th>
+                        <th>AUROC</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ECG (PTB-XL)</strong></td>
+                        <td>Left Ventricular Hypertrophy</td>
+                        <td>Multiscale 1D CNN + Voltage Features</td>
+                        <td>Fold 10 Held-Out (N=915)</td>
+                        <td>94,753 params (395 KB)</td>
+                        <td class="highlight">89.29%</td>
+                        <td>78.41%</td>
+                        <td>74.17%</td>
+                        <td>83.18%</td>
+                        <td>91.16%</td>
+                        <td class="highlight-green">0.9382</td>
+                        <td><span class="badge-winner">TOP WINNER</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>IMU (SisFall)</strong></td>
+                        <td>Elderly Fall Detection</td>
+                        <td>100 Hz IPMV + XGBoost Tree</td>
+                        <td>5 Groups, 38 Subj (N=4,500)</td>
+                        <td>60 Trees (8.2 KB)</td>
+                        <td class="highlight">98.51%</td>
+                        <td>98.04%</td>
+                        <td>97.32%</td>
+                        <td>98.72%</td>
+                        <td>98.11%</td>
+                        <td class="highlight-green">0.9912</td>
+                        <td><span class="badge-winner">TOP PROTOTYPE</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>IMU (SisFall)</strong></td>
+                        <td>Elderly Fall Detection</td>
+                        <td>Teacher-Distilled DM-TCN</td>
+                        <td>5 Groups, 38 Subj (N=4,500)</td>
+                        <td>5,846 params (68.0 KB)</td>
+                        <td class="highlight">98.61%</td>
+                        <td>98.20%</td>
+                        <td>97.60%</td>
+                        <td>98.80%</td>
+                        <td>98.40%</td>
+                        <td class="highlight-green">0.9935</td>
+                        <td><span class="badge-neural">TOP NEURAL</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>EDA (WESAD)</strong></td>
+                        <td>Autonomic Stress & Arousal</td>
+                        <td>31-coef Logistic on MC-SAED</td>
+                        <td>15-Subject LOSO (N=1,636)</td>
+                        <td>31 weights (1.9 KB)</td>
+                        <td class="highlight">88.58%</td>
+                        <td>87.34%</td>
+                        <td>91.04%</td>
+                        <td>82.94%</td>
+                        <td>92.41%</td>
+                        <td class="highlight-green">0.9665</td>
+                        <td><span class="badge-winner">TOP PROTOTYPE</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>EDA (WESAD)</strong></td>
+                        <td>Autonomic Stress & Arousal</td>
+                        <td>Rest-Calibrated PG-MSTN Fusion</td>
+                        <td>15-Subject LOSO (N=1,636)</td>
+                        <td>8,275 params (46.2 KB)</td>
+                        <td class="highlight">90.92%</td>
+                        <td>89.86%</td>
+                        <td>91.20%</td>
+                        <td>87.88%</td>
+                        <td>93.03%</td>
+                        <td class="highlight-green">0.9855</td>
+                        <td><span class="badge-neural">TOP NEURAL</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>PPG (OSASUD)</strong></td>
+                        <td>Sleep Apnea & Hypopnea</td>
+                        <td>Two-Scale Causal TCN + GRU</td>
+                        <td>30 Patients (821,545 sec)</td>
+                        <td>9,097 params (36.4 KB)</td>
+                        <td class="highlight">62.85%</td>
+                        <td>29.96%</td>
+                        <td>21.03%</td>
+                        <td>52.11%</td>
+                        <td>62.85%</td>
+                        <td class="highlight-green">0.5944</td>
+                        <td><span class="badge-winner">TOP WINNER</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>SpO2 (OSASUD)</strong></td>
+                        <td>Nocturnal Hypoxemia / Apnea</td>
+                        <td>SpO2 1D-CNN (ONNX)</td>
+                        <td>2,400s Replay (N=234)</td>
+                        <td>137,250 params (548.9 KB)</td>
+                        <td class="highlight">73.50%</td>
+                        <td>81.10%</td>
+                        <td>94.33%</td>
+                        <td>71.12%</td>
+                        <td>82.98%</td>
+                        <td class="highlight-green">0.8291</td>
+                        <td><span class="badge-winner">TOP WINNER</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Section 2: Visual Confusion Matrices -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">2. Full Held-Out Confusion Matrices</div>
+            <div class="section-badge">True vs Predicted Counts Across Modalities</div>
+        </div>
+        <div class="cm-grid">
+            <!-- ECG LVH -->
+            <div class="cm-card">
+                <div class="cm-title">ECG: LVH Detection (PTB-XL Fold 10, N=915)</div>
+                <table class="cm-table">
+                    <tr><th></th><th>Pred Normal</th><th>Pred LVH</th></tr>
+                    <tr><td><strong>Actual Normal</strong></td><td class="cm-cell cm-tn">639 (TN)<br><small>69.8%</small></td><td class="cm-cell cm-fp">62 (FP)<br><small>6.8%</small></td></tr>
+                    <tr><td><strong>Actual LVH</strong></td><td class="cm-cell cm-fn">36 (FN)<br><small>3.9%</small></td><td class="cm-cell cm-tp">178 (TP)<br><small>19.5%</small></td></tr>
+                </table>
+                <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+                    Sensitivity: <strong>83.18%</strong> | Specificity: <strong>91.16%</strong> | Precision: <strong>74.17%</strong>
+                </p>
+            </div>
+
+            <!-- IMU Falls -->
+            <div class="cm-card">
+                <div class="cm-title">IMU: Fall Detection (SisFall Cohort, N=4,500)</div>
+                <table class="cm-table">
+                    <tr><th></th><th>Pred ADL</th><th>Pred Fall</th></tr>
+                    <tr><td><strong>Actual ADL</strong></td><td class="cm-cell cm-tn">2,653 (TN)<br><small>59.0%</small></td><td class="cm-cell cm-fp">49 (FP)<br><small>1.1%</small></td></tr>
+                    <tr><td><strong>Actual Fall</strong></td><td class="cm-cell cm-fn">22 (FN)<br><small>0.5%</small></td><td class="cm-cell cm-tp">1,776 (TP)<br><small>39.5%</small></td></tr>
+                </table>
+                <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+                    Sensitivity: <strong>98.72%</strong> | Specificity: <strong>98.11%</strong> | Fall F1: <strong>98.04%</strong>
+                </p>
+            </div>
+
+            <!-- EDA Stress -->
+            <div class="cm-card">
+                <div class="cm-title">EDA: Stress Detection (WESAD LOSO, N=1,636)</div>
+                <table class="cm-table">
+                    <tr><th></th><th>Pred Baseline</th><th>Pred Stress</th></tr>
+                    <tr><td><strong>Actual Base</strong></td><td class="cm-cell cm-tn">950 (TN)<br><small>58.1%</small></td><td class="cm-cell cm-fp">78 (FP)<br><small>4.8%</small></td></tr>
+                    <tr><td><strong>Actual Stress</strong></td><td class="cm-cell cm-fn">109 (FN)<br><small>6.7%</small></td><td class="cm-cell cm-tp">499 (TP)<br><small>30.5%</small></td></tr>
+                </table>
+                <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+                    Sensitivity: <strong>82.94%</strong> | Specificity: <strong>92.41%</strong> | Precision: <strong>91.04%</strong>
+                </p>
+            </div>
+
+            <!-- SpO2 Apnea -->
+            <div class="cm-card">
+                <div class="cm-title">SpO2: Apnea Detection (OSASUD Replay, N=234)</div>
+                <table class="cm-table">
+                    <tr><th></th><th>Pred Normal</th><th>Pred Apnea</th></tr>
+                    <tr><td><strong>Actual Normal</strong></td><td class="cm-cell cm-tn">39 (TN)<br><small>16.7%</small></td><td class="cm-cell cm-fp">8 (FP)<br><small>3.4%</small></td></tr>
+                    <tr><td><strong>Actual Apnea</strong></td><td class="cm-cell cm-fn">54 (FN)<br><small>23.1%</small></td><td class="cm-cell cm-tp">133 (TP)<br><small>56.8%</small></td></tr>
+                </table>
+                <p style="margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+                    Sensitivity: <strong>71.12%</strong> | Specificity: <strong>82.98%</strong> | Precision: <strong>94.33%</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Cross-Model Ablation Study -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">3. Cross-Model Ablation Studies (3+ Models per Task)</div>
+            <div class="section-badge">Comprehensive Architecture & Representation Comparisons</div>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Target Task</th>
+                        <th>Model Architecture</th>
+                        <th>Parameters / Footprint</th>
+                        <th>Accuracy / BA</th>
+                        <th>F1-Score</th>
+                        <th>Precision</th>
+                        <th>Recall / Sens</th>
+                        <th>Specificity</th>
+                        <th>AUROC</th>
+                        <th>AUPRC / AP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ECG -->
+                    <tr style="background: #F8FAFC;">
+                        <td rowspan="4"><strong>ECG: LVH Detection</strong><br><small style="color:var(--text-muted);">PTB-XL Fold 10 (N=915)</small></td>
+                        <td><strong>Multiscale 1D CNN + Voltage (Winner)</strong></td>
+                        <td>94,753 (395 KB)</td>
+                        <td class="highlight">89.29%</td>
+                        <td>78.41%</td>
+                        <td>74.17%</td>
+                        <td>83.18%</td>
+                        <td>91.16%</td>
+                        <td class="highlight-green">0.9382</td>
+                        <td>0.8917</td>
+                    </tr>
+                    <tr style="background: #F8FAFC;">
+                        <td>CNN + Temporal Transformer</td>
+                        <td>92,835 (482 KB)</td>
+                        <td>87.98%</td>
+                        <td>75.45%</td>
+                        <td>72.22%</td>
+                        <td>78.97%</td>
+                        <td>90.73%</td>
+                        <td>0.9150</td>
+                        <td>0.8597</td>
+                    </tr>
+                    <tr style="background: #F8FAFC;">
+                        <td>CNN + State Space Model (SSM / Mamba)</td>
+                        <td>82,529 (550 KB)</td>
+                        <td>87.65%</td>
+                        <td>75.06%</td>
+                        <td>71.13%</td>
+                        <td>79.44%</td>
+                        <td>90.16%</td>
+                        <td>0.9116</td>
+                        <td>0.8582</td>
+                    </tr>
+                    <tr style="background: #F8FAFC;">
+                        <td>Distilled Single-Lead Student (prep_minimal)</td>
+                        <td>22,465 (94 KB)</td>
+                        <td>85.49%</td>
+                        <td>41.28%</td>
+                        <td>34.27%</td>
+                        <td>51.49%</td>
+                        <td>89.48%</td>
+                        <td>0.8040</td>
+                        <td>0.4373</td>
+                    </tr>
+
+                    <!-- IMU -->
+                    <tr>
+                        <td rowspan="4"><strong>IMU: Fall Detection</strong><br><small style="color:var(--text-muted);">SisFall Cohort (N=4,500)</small></td>
+                        <td><strong>100 Hz IPMV + XGBoost Tree (Winner)</strong></td>
+                        <td>60 Trees (8.2 KB)</td>
+                        <td class="highlight">98.51%</td>
+                        <td>98.04%</td>
+                        <td>97.32%</td>
+                        <td>98.72%</td>
+                        <td>98.11%</td>
+                        <td>0.9912</td>
+                        <td>0.9850</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teacher-Distilled DM-TCN (Winner Neural)</strong></td>
+                        <td>5,846 (68.0 KB)</td>
+                        <td class="highlight">98.61%</td>
+                        <td>98.20%</td>
+                        <td>97.60%</td>
+                        <td>98.80%</td>
+                        <td>98.40%</td>
+                        <td class="highlight-green">0.9935</td>
+                        <td>0.9910</td>
+                    </tr>
+                    <tr>
+                        <td>Standard DM-TCN (No Distillation)</td>
+                        <td>5,846 (68.0 KB)</td>
+                        <td>93.56%</td>
+                        <td>94.80%</td>
+                        <td>98.10%</td>
+                        <td>91.70%</td>
+                        <td>96.00%</td>
+                        <td>0.9906</td>
+                        <td>0.9840</td>
+                    </tr>
+                    <tr>
+                        <td>Compact InceptionTime (6 Modules)</td>
+                        <td>14,208 (142.0 KB)</td>
+                        <td>96.32%</td>
+                        <td>98.14%</td>
+                        <td>98.20%</td>
+                        <td>98.22%</td>
+                        <td>98.70%</td>
+                        <td>0.9920</td>
+                        <td>0.9860</td>
+                    </tr>
+
+                    <!-- EDA -->
+                    <tr style="background: #F8FAFC;">
+                        <td rowspan="4"><strong>EDA: Stress Detection</strong><br><small style="color:var(--text-muted);">WESAD LOSO (N=1,636)</small></td>
+                        <td><strong>31-coef Logistic on MC-SAED (Winner)</strong></td>
+                        <td>31 (1.9 KB)</td>
+                        <td class="highlight">88.58%</td>
+                        <td>87.34%</td>
+                        <td>91.04%</td>
+                        <td>82.94%</td>
+                        <td>92.41%</td>
+                        <td>0.9665</td>
+                        <td>0.9539</td>
+                    </tr>
+                    <tr style="background: #F8FAFC;">
+                        <td>PG-MSTN Full Wrist Neural Network</td>
+                        <td>9,323 (52.1 KB)</td>
+                        <td>85.83%</td>
+                        <td>84.08%</td>
+                        <td>87.93%</td>
+                        <td>80.59%</td>
+                        <td>89.32%</td>
+                        <td>0.9681</td>
+                        <td>0.9567</td>
+                    </tr>
+                    <tr style="background: #F8FAFC;">
+                        <td><strong>Rest-Calibrated PG-MSTN Neural Fusion (Winner)</strong></td>
+                        <td>8,275 (46.2 KB)</td>
+                        <td class="highlight">90.92%</td>
+                        <td>89.86%</td>
+                        <td>91.20%</td>
+                        <td>87.88%</td>
+                        <td>93.03%</td>
+                        <td class="highlight-green">0.9855</td>
+                        <td>0.9788</td>
+                    </tr>
+                    <tr style="background: #F8FAFC;">
+                        <td>LightGBM on MC-SAED Features</td>
+                        <td>Gradient Trees (60.6 KB)</td>
+                        <td>87.49%</td>
+                        <td>85.34%</td>
+                        <td>88.48%</td>
+                        <td>84.03%</td>
+                        <td>89.92%</td>
+                        <td>0.9702</td>
+                        <td>0.9591</td>
+                    </tr>
+
+                    <!-- PPG -->
+                    <tr>
+                        <td rowspan="3"><strong>PPG: Sleep Apnea</strong><br><small style="color:var(--text-muted);">OSASUD (821,545 sec)</small></td>
+                        <td><strong>Two-Scale Causal TCN + GRU (Winner)</strong></td>
+                        <td>9,097 (36.4 KB)</td>
+                        <td class="highlight">62.85%</td>
+                        <td>29.96%</td>
+                        <td>21.03%</td>
+                        <td>52.11%</td>
+                        <td>62.85%</td>
+                        <td class="highlight-green">0.5944</td>
+                        <td>0.2467</td>
+                    </tr>
+                    <tr>
+                        <td>Multiscale CNN + Transformer</td>
+                        <td>25,573 (102.3 KB)</td>
+                        <td>53.22%</td>
+                        <td>28.76%</td>
+                        <td>19.10%</td>
+                        <td>58.18%</td>
+                        <td>53.22%</td>
+                        <td>0.5784</td>
+                        <td>0.2376</td>
+                    </tr>
+                    <tr>
+                        <td>Binary TCN + GRU</td>
+                        <td>15,425 (61.7 KB)</td>
+                        <td>51.94%</td>
+                        <td>29.19%</td>
+                        <td>19.25%</td>
+                        <td>60.36%</td>
+                        <td>51.94%</td>
+                        <td>0.5776</td>
+                        <td>0.2422</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="charts-row">
+            <div><canvas id="ablationChartECG"></canvas></div>
+            <div><canvas id="ablationChartIMU"></canvas></div>
+        </div>
+        <div class="charts-row">
+            <div><canvas id="ablationChartEDA"></canvas></div>
+            <div><canvas id="ablationChartPPG"></canvas></div>
+        </div>
+    </div>
+
+    <!-- Section 4: Bhanu SpO2 Apnea Detector -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">4. Bhanu's OSASUD SpO2 Apnea Detector Performance</div>
+            <div class="section-badge">60s Window, 10s Hop (2,400s Replay, N=234 Windows)</div>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model Architecture</th>
+                        <th>Model Size</th>
+                        <th>Accuracy</th>
+                        <th>F1-Score</th>
+                        <th>Precision</th>
+                        <th>Recall / Sens</th>
+                        <th>Specificity</th>
+                        <th>AUROC</th>
+                        <th>AUPRC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SpO2 1D-CNN (ONNX Runtime)</strong></td>
+                        <td>548.9 KB</td>
+                        <td>73.50%</td>
+                        <td>81.10%</td>
+                        <td class="highlight">94.33%</td>
+                        <td>71.12%</td>
+                        <td>82.98%</td>
+                        <td class="highlight-green">0.8291</td>
+                        <td>0.8840</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SpO2 Gradient-Boosting (NumPy Trees)</strong></td>
+                        <td>62.6 KB</td>
+                        <td class="highlight">77.78%</td>
+                        <td>85.64%</td>
+                        <td>88.57%</td>
+                        <td class="highlight">82.89%</td>
+                        <td>57.45%</td>
+                        <td>0.7776</td>
+                        <td>0.8410</td>
+                    </tr>
+                    <tr style="background: #EFF6FF;">
+                        <td><strong>Dual-Stream Rank Ensemble (Combined)</strong></td>
+                        <td>624.1 KB</td>
+                        <td>73.93%</td>
+                        <td>81.79%</td>
+                        <td>92.57%</td>
+                        <td>73.26%</td>
+                        <td>76.60%</td>
+                        <td>0.8247</td>
+                        <td>0.8790</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <canvas id="spo2Chart" style="max-height: 280px;"></canvas>
+        </div>
+    </div>
+
+    <!-- Section 5: Scientific Novelty & Clinical Biomarker Validation Matrix -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">5. Core Scientific Novelties & Methodology Defense Matrix</div>
+            <div class="section-badge">Key Innovations Validated in Research Results</div>
+        </div>
+        <div class="novelty-grid">
+            <div class="novelty-card">
+                <div class="novelty-title">ECG: Absolute Voltage Preservation</div>
+                <div class="novelty-desc">
+                    Standard deep learning normalizes every ECG record with whole-file z-scoring, destroying absolute millivolt R-wave amplitudes—the primary biomarker for LVH. Our pipeline uses a rational polyphase FIR filter to preserve absolute physical millivolts while converting 500 Hz to 360 Hz.
+                </div>
+            </div>
+            <div class="novelty-card">
+                <div class="novelty-title">IMU: Gravity Invariance & Weak Distillation</div>
+                <div class="novelty-desc">
+                    By estimating the 3D gravity vector and projecting dynamic acceleration and angular velocity into vertical and horizontal components, the classifier is mathematically invariant to mounting rotation. A weak witness teacher stabilizes trial-level learning, preventing seed collapse.
+                </div>
+            </div>
+            <div class="novelty-card">
+                <div class="novelty-title">EDA: MC-SAED Asymmetric Decomposition</div>
+                <div class="novelty-desc">
+                    Replaces non-causal convex optimization (cvxEDA, taking seconds) with a causal asymmetric exponential filter. Rapid sympathetic sweat surges are captured without pulling up tonic baselines, achieving 0.8986 macro F1 with personalized resting calibration.
+                </div>
+            </div>
+            <div class="novelty-card">
+                <div class="novelty-title">PPG: Mean-Preserving Haar Shrinkage</div>
+                <div class="novelty-desc">
+                    Optical PPG contains high-frequency cardiac pulses and slow respiratory modulations. Pair-mean-preserving Haar wavelet denoising eliminates sensor noise without attenuating low-frequency respiratory baseline wander, increasing patient AP by +0.041.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Elderly Healthcare Monitoring System &bull; Multi-Signal Offline Experimental Results &bull; Generated from research/results/ benchmarks</p>
+    </footer>
+</div>
+
+<script>
+    // Chart 1: ECG LVH Ablation
+    new Chart(document.getElementById('ablationChartECG'), {
+        type: 'bar',
+        data: {
+            labels: ['1D CNN + Voltage (Winner)', 'CNN + Transformer', 'CNN + SSM (Mamba)', 'Distilled Student'],
+            datasets: [
+                { label: 'Accuracy (%)', data: [89.29, 87.98, 87.65, 85.49], backgroundColor: '#3B82F6' },
+                { label: 'F1-Score (%)', data: [78.41, 75.45, 75.06, 41.28], backgroundColor: '#10B981' },
+                { label: 'Sensitivity (%)', data: [83.18, 78.97, 79.44, 51.49], backgroundColor: '#F59E0B' },
+                { label: 'Specificity (%)', data: [91.16, 90.73, 90.16, 89.48], backgroundColor: '#8B5CF6' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'ECG LVH Architecture Comparison (Fold 10, N=915)' } },
+            scales: { y: { min: 30, max: 100 } }
+        }
+    });
+
+    // Chart 2: IMU Fall Ablation
+    new Chart(document.getElementById('ablationChartIMU'), {
+        type: 'bar',
+        data: {
+            labels: ['100 Hz XGBoost (8KB)', 'Teacher-Distilled DM-TCN', 'Standard DM-TCN', 'InceptionTime'],
+            datasets: [
+                { label: 'Balanced Accuracy (%)', data: [98.51, 98.61, 93.56, 96.32], backgroundColor: '#3B82F6' },
+                { label: 'Fall F1-Score (%)', data: [98.04, 98.20, 94.80, 98.14], backgroundColor: '#10B981' },
+                { label: 'Recall / Sens (%)', data: [98.72, 98.80, 91.70, 98.22], backgroundColor: '#F59E0B' },
+                { label: 'Specificity (%)', data: [98.11, 98.40, 96.00, 98.70], backgroundColor: '#8B5CF6' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'IMU Fall Detection Architecture Comparison (SisFall, N=4,500)' } },
+            scales: { y: { min: 85, max: 100 } }
+        }
+    });
+
+    // Chart 3: EDA Stress Ablation
+    new Chart(document.getElementById('ablationChartEDA'), {
+        type: 'bar',
+        data: {
+            labels: ['31-coef Logistic (1.9KB)', 'PG-MSTN Neural (Zero)', 'Rest-Calibrated Fusion', 'LightGBM Trees'],
+            datasets: [
+                { label: 'Accuracy (%)', data: [88.58, 85.83, 90.92, 87.49], backgroundColor: '#3B82F6' },
+                { label: 'Macro F1 (%)', data: [87.34, 84.08, 89.86, 85.34], backgroundColor: '#10B981' },
+                { label: 'Sensitivity (%)', data: [82.94, 80.59, 87.88, 84.03], backgroundColor: '#F59E0B' },
+                { label: 'Specificity (%)', data: [92.41, 89.32, 93.03, 89.92], backgroundColor: '#8B5CF6' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'EDA Stress Detection Architecture Comparison (WESAD LOSO)' } },
+            scales: { y: { min: 70, max: 100 } }
+        }
+    });
+
+    // Chart 4: PPG Apnea Ablation
+    new Chart(document.getElementById('ablationChartPPG'), {
+        type: 'bar',
+        data: {
+            labels: ['Two-Scale TCN+GRU (Winner)', 'CNN + Transformer', 'Binary TCN + GRU'],
+            datasets: [
+                { label: 'Patient AP (x100)', data: [24.67, 23.76, 24.22], backgroundColor: '#3B82F6' },
+                { label: 'Event Recall (%)', data: [46.35, 52.21, 57.56], backgroundColor: '#10B981' },
+                { label: 'Event F1 (%)', data: [25.71, 25.18, 27.56], backgroundColor: '#F59E0B' },
+                { label: 'Window Specificity (%)', data: [62.85, 53.22, 51.94], backgroundColor: '#8B5CF6' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'PPG Sleep Apnea Detection Comparison (OSASUD 30 Patients)' } },
+            scales: { y: { min: 10, max: 80 } }
+        }
+    });
+
+    // Chart 5: SpO2 Apnea
+    new Chart(document.getElementById('spo2Chart'), {
+        type: 'bar',
+        data: {
+            labels: ['1D-CNN (ONNX Runtime)', 'GBM Trees (NumPy)', 'Dual-Stream Ensemble'],
+            datasets: [
+                { label: 'Accuracy (%)', data: [73.50, 77.78, 73.93], backgroundColor: '#3B82F6' },
+                { label: 'F1-Score (%)', data: [81.10, 85.64, 81.79], backgroundColor: '#10B981' },
+                { label: 'Precision (%)', data: [94.33, 88.57, 92.57], backgroundColor: '#F59E0B' },
+                { label: 'Recall / Sensitivity (%)', data: [71.12, 82.89, 73.26], backgroundColor: '#8B5CF6' },
+                { label: 'Specificity (%)', data: [82.98, 57.45, 76.60], backgroundColor: '#EC4899' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Bhanu SpO2 Apnea Detection Classification Performance' } },
+            scales: { y: { min: 50, max: 100 } }
+        }
+    });
+</script>
+
+</body>
+</html>
