@@ -1,0 +1,5 @@
+modality,task,samples,accuracy,f1_score,precision,recall_sensitivity,specificity,auroc,tp,fp,tn,fn
+ECG_PTBXL_LVH,ECG_PTBXL_LVH,200,83.5,83.74,82.52,85.0,82.0,0.9376,85,18,82,15
+IMU_SisFall_Fall,IMU_SisFall_Fall,120,91.67,91.8,90.32,93.33,90.0,0.9736,56,6,54,4
+PPG_OSASUD_Apnea,PPG_OSASUD_Apnea,120,60.83,61.16,60.66,61.67,60.0,0.6656,37,24,36,23
+EDA_WESAD_Stress,EDA_WESAD_Stress,120,99.17,99.17,98.36,100.0,98.33,1.0,60,1,59,0

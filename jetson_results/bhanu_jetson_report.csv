@@ -1,0 +1,4 @@
+model,size,latency_p50_ms,latency_p95_ms,accuracy,f1_score,precision,recall_sensitivity,specificity,auroc,tp,fp,tn,fn
+SpO2 1D-CNN (cnn_spo2),548.9 KB,8.499,10.385,73.5,81.1,94.33,71.12,82.98,0.8291,133,8,39,54
+SpO2 Gradient-Boosting (gbm.npz),62.6 KB,47.603,51.243,77.78,85.64,88.57,82.89,57.45,0.7776,155,20,27,32
+Dual-Stream Rank Ensemble (Ensemble),624.1 KB,56.281,61.832,73.93,81.79,92.57,73.26,76.6,0.8247,137,11,36,50

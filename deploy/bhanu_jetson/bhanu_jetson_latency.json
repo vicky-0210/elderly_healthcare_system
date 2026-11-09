@@ -1,0 +1,73 @@
+{
+  "iterations": 100,
+  "realtime_deadline_ms": 10000.0,
+  "budget_used_percent": 0.218,
+  "stages": {
+    "gbm_feature_extraction": {
+      "p50_ms": 8.484,
+      "p90_ms": 8.666,
+      "p95_ms": 8.695,
+      "p99_ms": 9.016,
+      "mean_ms": 8.515,
+      "std_ms": 0.133,
+      "min_ms": 8.344,
+      "max_ms": 9.025,
+      "throughput_hz": 117.4
+    },
+    "cnn_channel_preprocessing": {
+      "p50_ms": 2.796,
+      "p90_ms": 2.846,
+      "p95_ms": 2.978,
+      "p99_ms": 3.549,
+      "mean_ms": 2.857,
+      "std_ms": 0.455,
+      "min_ms": 2.736,
+      "max_ms": 7.293,
+      "throughput_hz": 350.0
+    },
+    "cnn_model_forward": {
+      "p50_ms": 0.54,
+      "p90_ms": 0.583,
+      "p95_ms": 0.592,
+      "p99_ms": 0.676,
+      "mean_ms": 0.554,
+      "std_ms": 0.031,
+      "min_ms": 0.53,
+      "max_ms": 0.757,
+      "throughput_hz": 1804.2
+    },
+    "gbm_tree_evaluation": {
+      "p50_ms": 7.643,
+      "p90_ms": 7.798,
+      "p95_ms": 7.897,
+      "p99_ms": 8.126,
+      "mean_ms": 7.68,
+      "std_ms": 0.128,
+      "min_ms": 7.547,
+      "max_ms": 8.499,
+      "throughput_hz": 130.2
+    },
+    "rank_calibration_fusion": {
+      "p50_ms": 0.003,
+      "p90_ms": 0.003,
+      "p95_ms": 0.003,
+      "p99_ms": 0.003,
+      "mean_ms": 0.003,
+      "std_ms": 0.0,
+      "min_ms": 0.003,
+      "max_ms": 0.003,
+      "throughput_hz": 344708.7
+    },
+    "full_pipeline_end_to_end": {
+      "p50_ms": 20.036,
+      "p90_ms": 21.368,
+      "p95_ms": 21.817,
+      "p99_ms": 22.792,
+      "mean_ms": 20.364,
+      "std_ms": 0.729,
+      "min_ms": 19.648,
+      "max_ms": 23.197,
+      "throughput_hz": 49.1
+    }
+  }
+}

@@ -1,0 +1,5 @@
+numpy
+pandas
+scipy
+torch      # on Jetson use the NVIDIA wheel for your JetPack (see setup_orin.sh); CPU inference is enough for this model
+smbus2     # only needed for the MAX30102 sensor (run_live.py)

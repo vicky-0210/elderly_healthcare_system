@@ -1,0 +1,13 @@
+# sudo cp apnea-detector.service /etc/systemd/system/ ; sudo systemctl enable --now apnea-detector
+[Unit]
+Description=Sleep apnea detector (MAX30102)
+After=multi-user.target
+
+[Service]
+User=jetson
+WorkingDirectory=/home/jetson/jetson_deploy
+ExecStart=/usr/bin/python3 run_live.py --bus 7 --log /home/jetson/events.csv
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
