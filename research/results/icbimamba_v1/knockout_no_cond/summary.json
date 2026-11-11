@@ -1,0 +1,250 @@
+{
+  "model": "IC-BiMamba ensemble",
+  "seeds": [
+    4907,
+    6203,
+    7919,
+    1361,
+    2718
+  ],
+  "config": {
+    "width": 48,
+    "depth": 3,
+    "raw": true,
+    "conditioned": true,
+    "bidirectional": true,
+    "lr": 0.002,
+    "wd": 0.02,
+    "batch": 48,
+    "bag": 8,
+    "epochs": 30,
+    "patience": 8,
+    "augment": true
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "inner_ba": 0.9772155474504787,
+      "threshold": -4.186800956726074,
+      "epochs": [
+        5,
+        30,
+        18,
+        11,
+        8
+      ]
+    },
+    {
+      "fold": 1,
+      "inner_ba": 0.9808663376957765,
+      "threshold": -3.9381587505340576,
+      "epochs": [
+        10,
+        15,
+        15,
+        17,
+        30
+      ]
+    },
+    {
+      "fold": 2,
+      "inner_ba": 0.9811211113494989,
+      "threshold": -2.1325345039367676,
+      "epochs": [
+        17,
+        4,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "fold": 3,
+      "inner_ba": 0.9875992740721331,
+      "threshold": -4.30156135559082,
+      "epochs": [
+        15,
+        30,
+        30,
+        30,
+        30
+      ]
+    },
+    {
+      "fold": 4,
+      "inner_ba": 0.9793650861760741,
+      "threshold": -4.676125526428223,
+      "epochs": [
+        30,
+        30,
+        30,
+        30,
+        30
+      ]
+    }
+  ],
+  "parameters_per_member": 72410,
+  "ensemble": {
+    "trials": 4500,
+    "participants": 38,
+    "tn": 2626,
+    "fp": 76,
+    "fn": 49,
+    "tp": 1749,
+    "accuracy": 0.9722222222222222,
+    "precision": 0.9583561643835616,
+    "recall": 0.9727474972191323,
+    "specificity": 0.9718726868985936,
+    "f1": 0.9654982059067071,
+    "subject_sensitivity": 0.9727625570776256,
+    "subject_specificity": 0.97067426034273,
+    "subject_ba": 0.9717184087101778,
+    "auc": 0.9942099907043683,
+    "ap": 0.9888429273031907,
+    "brier": 0.024126312629372405,
+    "adl_hours": 14.500298611111113,
+    "monitored_hours": 11.425833333333333,
+    "false_alerts": 79,
+    "fa_per_hour": 5.448163663296206,
+    "fa_per_monitored_hour": 6.914156516665451
+  },
+  "subject_ba_95ci": [
+    0.961929179540698,
+    0.9807565050713563
+  ],
+  "paired_vs_baselines": {
+    "xgb_native_100": {
+      "delta_subject_ba_95ci": [
+        -0.023022454910559428,
+        -0.004477150906768516
+      ],
+      "delta_accuracy": -0.01200000000000001,
+      "fixed_by_icbm": 64,
+      "broken_by_icbm": 118
+    },
+    "dm_tcn_standard": {
+      "delta_subject_ba_95ci": [
+        -0.028049626151881803,
+        -0.010515254405743421
+      ],
+      "delta_accuracy": -0.018888888888888955,
+      "fixed_by_icbm": 39,
+      "broken_by_icbm": 124
+    },
+    "inception": {
+      "delta_subject_ba_95ci": [
+        -0.025522355244607168,
+        -0.0005308711007332983
+      ],
+      "delta_accuracy": -0.01288888888888895,
+      "fixed_by_icbm": 63,
+      "broken_by_icbm": 121
+    },
+    "dm_distilled": {
+      "delta_subject_ba_95ci": [
+        -0.021405739360950797,
+        0.0007035676747642585
+      ],
+      "delta_accuracy": -0.011111111111111072,
+      "fixed_by_icbm": 68,
+      "broken_by_icbm": 118
+    }
+  },
+  "errors_by_activity": [
+    {
+      "y": 0,
+      "activity": "D07",
+      "n": 2
+    },
+    {
+      "y": 0,
+      "activity": "D09",
+      "n": 1
+    },
+    {
+      "y": 0,
+      "activity": "D11",
+      "n": 5
+    },
+    {
+      "y": 0,
+      "activity": "D12",
+      "n": 8
+    },
+    {
+      "y": 0,
+      "activity": "D13",
+      "n": 1
+    },
+    {
+      "y": 0,
+      "activity": "D14",
+      "n": 33
+    },
+    {
+      "y": 0,
+      "activity": "D15",
+      "n": 3
+    },
+    {
+      "y": 0,
+      "activity": "D16",
+      "n": 4
+    },
+    {
+      "y": 0,
+      "activity": "D17",
+      "n": 19
+    },
+    {
+      "y": 1,
+      "activity": "F01",
+      "n": 3
+    },
+    {
+      "y": 1,
+      "activity": "F02",
+      "n": 4
+    },
+    {
+      "y": 1,
+      "activity": "F03",
+      "n": 3
+    },
+    {
+      "y": 1,
+      "activity": "F04",
+      "n": 7
+    },
+    {
+      "y": 1,
+      "activity": "F05",
+      "n": 1
+    },
+    {
+      "y": 1,
+      "activity": "F06",
+      "n": 7
+    },
+    {
+      "y": 1,
+      "activity": "F07",
+      "n": 4
+    },
+    {
+      "y": 1,
+      "activity": "F10",
+      "n": 2
+    },
+    {
+      "y": 1,
+      "activity": "F11",
+      "n": 15
+    },
+    {
+      "y": 1,
+      "activity": "F14",
+      "n": 3
+    }
+  ]
+}

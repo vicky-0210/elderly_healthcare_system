@@ -1,0 +1,205 @@
+{
+  "model": "IC-BiMamba ensemble",
+  "seeds": [
+    4907,
+    6203,
+    7919,
+    1361,
+    2718
+  ],
+  "config": {
+    "width": 48,
+    "depth": 3,
+    "raw": true,
+    "conditioned": true,
+    "bidirectional": true,
+    "lr": 0.002,
+    "wd": 0.02,
+    "batch": 48,
+    "bag": 8,
+    "epochs": 30,
+    "patience": 8,
+    "augment": true
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "inner_ba": 0.9968162053922651,
+      "threshold": 1.2185548543930054,
+      "epochs": [
+        5,
+        30,
+        18,
+        11,
+        8
+      ]
+    },
+    {
+      "fold": 1,
+      "inner_ba": 0.9986666666666698,
+      "threshold": 2.754072904586792,
+      "epochs": [
+        10,
+        15,
+        15,
+        17,
+        30
+      ]
+    },
+    {
+      "fold": 2,
+      "inner_ba": 0.9992088607594968,
+      "threshold": 2.4805567264556885,
+      "epochs": [
+        17,
+        4,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "fold": 3,
+      "inner_ba": 0.9999999999999989,
+      "threshold": 6.165571689605713,
+      "epochs": [
+        15,
+        30,
+        30,
+        30,
+        30
+      ]
+    },
+    {
+      "fold": 4,
+      "inner_ba": 1.000000000000003,
+      "threshold": 7.629404544830322,
+      "epochs": [
+        30,
+        30,
+        30,
+        30,
+        30
+      ]
+    }
+  ],
+  "parameters_per_member": 72410,
+  "ensemble": {
+    "trials": 4500,
+    "participants": 38,
+    "tn": 2689,
+    "fp": 13,
+    "fn": 19,
+    "tp": 1779,
+    "accuracy": 0.9928888888888889,
+    "precision": 0.9927455357142857,
+    "recall": 0.9894327030033371,
+    "specificity": 0.9951887490747594,
+    "f1": 0.9910863509749304,
+    "subject_sensitivity": 0.9894444444444445,
+    "subject_specificity": 0.9947662010636975,
+    "subject_ba": 0.992105322754071,
+    "auc": 0.9996830099073812,
+    "ap": 0.9994915171690056,
+    "brier": 0.004272145725392265,
+    "adl_hours": 14.500298611111113,
+    "monitored_hours": 11.425833333333333,
+    "false_alerts": 13,
+    "fa_per_hour": 0.8965332610487426,
+    "fa_per_monitored_hour": 1.137772591350011
+  },
+  "subject_ba_95ci": [
+    0.986585133216274,
+    0.9966072228409697
+  ],
+  "paired_vs_baselines": {
+    "xgb_native_100": {
+      "delta_subject_ba_95ci": [
+        0.0004638068469590415,
+        0.014082144868879322
+      ],
+      "delta_accuracy": 0.008666666666666711,
+      "fixed_by_icbm": 62,
+      "broken_by_icbm": 23
+    },
+    "dm_tcn_standard": {
+      "delta_subject_ba_95ci": [
+        -0.003107222972015763,
+        0.005869373850064688
+      ],
+      "delta_accuracy": 0.001777777777777767,
+      "fixed_by_icbm": 34,
+      "broken_by_icbm": 26
+    },
+    "inception": {
+      "delta_subject_ba_95ci": [
+        -0.0015034341866672575,
+        0.016533852187163193
+      ],
+      "delta_accuracy": 0.007777777777777772,
+      "fixed_by_icbm": 66,
+      "broken_by_icbm": 31
+    },
+    "dm_distilled": {
+      "delta_subject_ba_95ci": [
+        0.0023175740607481016,
+        0.018447961540234932
+      ],
+      "delta_accuracy": 0.00955555555555565,
+      "fixed_by_icbm": 65,
+      "broken_by_icbm": 22
+    }
+  },
+  "errors_by_activity": [
+    {
+      "y": 0,
+      "activity": "D14",
+      "n": 4
+    },
+    {
+      "y": 0,
+      "activity": "D16",
+      "n": 1
+    },
+    {
+      "y": 0,
+      "activity": "D17",
+      "n": 5
+    },
+    {
+      "y": 0,
+      "activity": "D18",
+      "n": 3
+    },
+    {
+      "y": 1,
+      "activity": "F01",
+      "n": 1
+    },
+    {
+      "y": 1,
+      "activity": "F08",
+      "n": 4
+    },
+    {
+      "y": 1,
+      "activity": "F10",
+      "n": 4
+    },
+    {
+      "y": 1,
+      "activity": "F11",
+      "n": 2
+    },
+    {
+      "y": 1,
+      "activity": "F13",
+      "n": 5
+    },
+    {
+      "y": 1,
+      "activity": "F14",
+      "n": 3
+    }
+  ]
+}
